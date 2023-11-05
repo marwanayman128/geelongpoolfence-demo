@@ -32,7 +32,7 @@ export default function footer() {
           </div>
         </div>
       </div> */}
-      <footer className="bg-[#000000] text-white p-10 text-center">
+      <footer id="contact" className="bg-[#000000] text-white p-10 text-center">
         © 2023 Geelong Pool Fence Safety Inspections. All rights reserved <br />
         Designed by{" "}
         <a className="text-[#2FA8FD]" href="https://quadsolution.com/">

@@ -3,7 +3,10 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 export default function section5() {
   return (
     <>
-      <div className=" p-10 pt-24 flex flex-col justify-center items-center backgroundHeroSectionImage ">
+      <div
+        id="services"
+        className=" p-10 pt-24 flex flex-col justify-center items-center backgroundHeroSectionImage "
+      >
         <h1 className="text-white text-center text-5xl font-bold">
           Services & Pricing
         </h1>

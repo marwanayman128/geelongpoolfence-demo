@@ -2,7 +2,10 @@ import React from "react";
 import Image from "next/image";
 export default function section2() {
   return (
-    <div className="BackgroundImageStyle h-full  flex flex-row  justify-around px-32  sm:px-0 sm:py-24 xs:px-0 xs:py-10 max-[900px]:flex-col max-[900px]:px-0">
+    <div
+      id="about"
+      className="BackgroundImageStyle h-full  flex flex-row  justify-around px-32  sm:px-0 sm:py-24 xs:px-0 xs:py-10 max-[900px]:flex-col max-[900px]:px-0"
+    >
       {" "}
       <div className="max-[900px]:mx-10 mx-0 my-5 max-[400px]:mx-4">
         <Image
