@@ -17,7 +17,6 @@ const ScrollToTop = () => {
           borderRadius: "50%",
           width: 50,
           height: 50,
-          backgroundColor: "#ED5521",
           "&:hover": {
             backgroundColor: "#000000",
           },
