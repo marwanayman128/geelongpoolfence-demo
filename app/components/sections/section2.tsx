@@ -9,7 +9,7 @@ export default function section2() {
       {" "}
       <div className="max-[900px]:mx-10 mx-0 my-5 max-[400px]:mx-4">
         <Image
-          src="/AboutUs.jpg"
+          src="/aboutus.png"
           alt="image"
           width={800}
           height={500}
