@@ -1,6 +1,6 @@
 'use client';
 import { KeyboardArrowUp } from "@mui/icons-material";
-import { Fab, Zoom, useScrollTrigger } from "@mui/material";
+import { Zoom, useScrollTrigger } from "@mui/material";
 const ScrollToTop = () => {
   return (
     <Zoom in={useScrollTrigger({ threshold: 100 })}>
