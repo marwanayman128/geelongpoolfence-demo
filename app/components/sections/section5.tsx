@@ -1,5 +1,6 @@
 import React from "react";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import Link from "next/link";
 export default function section5() {
   return (
     <>
@@ -47,12 +48,14 @@ export default function section5() {
                 }
               </li>
             </ul>
-            <button
-              type="button"
-              className="w-full px-3 py-3 text-sm text-white bg-black rounded-lg shadow hover:bg-[#2FA8FD] "
-            >
-              Book Now
-            </button>
+            <Link href="/book-now">
+              <button
+                type="button"
+                className="w-full px-3 py-3 text-sm text-white bg-black rounded-lg shadow hover:bg-[#2FA8FD] "
+              >
+                Book Now
+              </button>
+            </Link>
           </div>
           {/* Step 3 */}
           <div className="max-w-[400px] min-w-[300px] p-4 bg-indigo-500 shadow-lg rounded-2xl dark:bg-[#ffffff]">
@@ -100,12 +103,14 @@ export default function section5() {
                 }{" "}
               </li>
             </ul>
-            <button
-              type="button"
-              className="w-full px-3 py-3 text-sm text-white bg-black rounded-lg shadow hover:bg-[#2FA8FD] "
-            >
-              Book Now
-            </button>
+            <Link href="/book-now">
+              <button
+                type="button"
+                className="w-full px-3 py-3 text-sm text-white bg-black rounded-lg shadow hover:bg-[#2FA8FD] "
+              >
+                Book Now
+              </button>
+            </Link>
           </div>
 
           {/* Step 1 */}
@@ -133,12 +138,14 @@ export default function section5() {
                 Ensures preparedness for the compulsory inspection
               </li>
             </ul>
-            <button
-              type="button"
-              className="w-full px-3 py-3 text-sm text-white bg-black rounded-lg shadow hover:bg-[#2FA8FD] "
-            >
-              Book Now
-            </button>
+            <Link href="/book-now">
+              <button
+                type="button"
+                className="w-full px-3 py-3 text-sm text-white bg-black rounded-lg shadow hover:bg-[#2FA8FD] "
+              >
+                Book Now
+              </button>
+            </Link>
           </div>
         </div>
       </div>
