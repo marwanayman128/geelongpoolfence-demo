@@ -4,28 +4,18 @@ import { Fab, Zoom, useScrollTrigger } from "@mui/material";
 const ScrollToTop = () => {
   return (
     <Zoom in={useScrollTrigger({ threshold: 100 })}>
-      <Fab
+      <div
         onClick={() => {
           window.scrollTo(0, 0);
         }}
         variant="extended"
         size="small"
-        sx={{
-          position: "fixed",
-          bottom: 33,
-          right: 33,
-          borderRadius: "50%",
-          width: 50,
-          height: 50,
-          "&:hover": {
-            backgroundColor: "#000000",
-          },
-        }}
-        className="bg-[#2499ED] hover:bg-[#000000]"
+
+        className="bg-[#2499ED] hover:bg-[#000000] fixed bottom-9 right-9 rounded-full w-12 h-12 z-50"
         aria-label="add"
       >
-        <KeyboardArrowUp fontSize="medium" style={{ color: "white" }} />
-      </Fab>
+        <KeyboardArrowUp fontSize="medium" style={{ color: "white", margin: "auto", width: "50%", height: "100%", display: "flex", justifyContent: "center", alignItems: "center" }} />
+      </div>
     </Zoom>
   );
 };

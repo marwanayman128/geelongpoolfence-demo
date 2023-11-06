@@ -44,17 +44,17 @@ export default function Section1() {
           src="/production.mp4"
         ></video>
         <div className="bg-black opacity-40 absolute top-0 left-0 w-full h-[90vh] "></div>
-        <div className="text-white absolute z-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full px-32 max-[1300px]:px-10">
+        <div className="text-white absolute z-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full px-32 max-[1300px]:px-10 max-[350px]:px-2">
           <div className="flex justify-between w-full max-[850px]:flex-col max-[850px]:mt-10">
             <div>
-              <h1 className="text-7xl font-bold leading-tight max-[1100px]:text-5xl ">
+              <h1 className="text-7xl font-bold leading-tight max-[1100px]:text-5xl max-[350px]:text-3xl">
                 Pool & Spa{" "}
                 <span className="text-blue-500 ">
                   Barrier <br /> Compliance
                 </span>{" "}
                 <br /> Inspection Specialist
               </h1>
-              <div className="mt-10 text-2xl flex flex-col gap-4 max-[1100px]:text-lg">
+              <div className="mt-10 text-2xl flex flex-col gap-4 max-[1100px]:text-lg max-[350px]:text-sm">
                 <div className="flex gap-4">
                   <YourCustomIcon />
                   <h3 className="font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#2499ED] to-[#ffffff]">
@@ -80,11 +80,11 @@ export default function Section1() {
                 </div>
               </div>
             </div>
-            <div className="w-[600px] h-[450px] bg-white rounded-lg relative max-[850px]:m-auto max-[850px]:my-16 max-[700px]:w-full max-[850px]:h-auto">
-              <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#29A0F4] px-14 py-5 rounded-lg z-50 w-64">
+            <div className="w-[600px] h-[450px] bg-white rounded-lg relative max-[850px]:m-auto max-[850px]:my-16 max-[700px]:w-full max-[850px]:h-auto ">
+              <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#29A0F4] px-14 py-5 rounded-lg z-50 w-64 max-[350px]:px-2 max-[350px]:w-44">
                 <h2 className="text-center font-bold">Book Inspection</h2>
               </div>
-              <form className="flex flex-col p-10 gap-4 my-5" action="">
+              <form className="flex flex-col p-10 gap-4 my-5">
                 <div className="flex gap-4 max-[850px]:flex-col max-[850px]:w-full ">
                   <input
                     type="text"
@@ -132,7 +132,7 @@ export default function Section1() {
                   </select>
                 </div>
                 <button className="bg-[#29A0F4] text-white rounded-lg p-4">
-                  Next
+                  Book
                 </button>
               </form>
             </div>
