@@ -15,7 +15,7 @@ export default function contactSection() {
           Western suburbs of Melbourne, Colac, Warrnambool and surrounding
           regions.
         </p>
-        <h2 className="text-white text-xl">
+        <h2 className="text-white text-lg">
           <span>
             <ApartmentOutlinedIcon
               style={{
@@ -31,7 +31,7 @@ export default function contactSection() {
           </span>
           Address
         </h2>
-        <h2 className="text-white text-xl">
+        <h2 className="text-white text-lg">
           <span>
             <LocalPhoneOutlinedIcon
               style={{
@@ -47,7 +47,7 @@ export default function contactSection() {
           </span>
           0404 494 904
         </h2>
-        <h2 className="text-white text-xl">
+        <h2 className="text-white text-lg">
           <span>
             <EmailOutlinedIcon
               style={{
@@ -65,7 +65,7 @@ export default function contactSection() {
         </h2>
         <div className="flex gap-5 flex-col h-full  justify-end  min-w-fit  m-auto h-44  relative min-[500px]:hidden">
           <div className="blurryComp"></div>
-          <h1 className="text-white text-3xl font-bold text-center z-40">
+          <h1 className="text-white text-3xl font-bold text-center z-40 mt-3">
             Follow us
           </h1>
           <div className=" p-5 flex gap-5 justify-center">

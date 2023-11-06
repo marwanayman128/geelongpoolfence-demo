@@ -57,48 +57,51 @@ export default function Section1() {
                   <input
                     type="text"
                     placeholder="Name"
-                    className=" rounded-lg p-4 outline-gray-300 border-gray-300 border"
+                    className=" rounded-lg p-4 text-black outline-gray-300 border-gray-300 border"
                   />
                   <input
                     type="text"
                     placeholder="Phone"
-                    className=" rounded-lg p-4 outline-gray-300 border-gray-300 border"
+                    className=" rounded-lg p-4 text-black outline-gray-300 border-gray-300 border"
                   />
                 </div>
                 <div className="flex gap-4 max-[850px]:flex-col max-[850px]:w-full">
                   <input
                     type="text"
                     placeholder="Email"
-                    className=" rounded-lg p-4 outline-gray-300 border-gray-300 border"
+                    className=" rounded-lg p-4 text-black outline-gray-300 border-gray-300 border"
                   />
                   <input
                     type="text"
-                    placeholder="Property Address"
-                    className=" rounded-lg p-4 outline-gray-300 border-gray-300 border"
+                    placeholder="Address"
+                    className=" rounded-lg p-4 text-black outline-gray-300 border-gray-300 border"
                   />
                 </div>
                 <div className="flex gap-4 max-[850px]:flex-col max-[850px]:w-full">
-                  <input
-                    type="text"
-                    placeholder="Agent Name"
-                    className=" rounded-lg p-4 outline-gray-300 border-gray-300 border"
-                  />
-                  <input
-                    type="text"
-                    placeholder="Agent's Contact Number"
-                    className=" rounded-lg p-4 outline-gray-300 border-gray-300 border"
-                  />
-                </div>
-                <div className="flex gap-4 max-[850px]:flex-col max-[850px]:w-full">
-                  <select className="w-full rounded-lg p-4 outline-gray-300 border-gray-300 border text-gray-400">
+                  <select className="w-full rounded-lg p-4  outline-gray-300 border-gray-300 border text-gray-400">
                     <option value="" disabled selected>
-                      Job Type
+                      Inspection
                     </option>
-                    <option value="Option 1">Option 1</option>
-                    <option value="Option 2">Option 2</option>
-                    <option value="Option 3">Option 3</option>
+                    <option className="text-black" value="Option 1">
+                      Pre-Inspection
+                    </option>
+                    <option className="text-black" value="Option 2">
+                      Inspection
+                    </option>
+                    <option className="text-black" value="Option 3">
+                      Re-Inspection
+                    </option>
                   </select>
                 </div>
+                <div className="flex gap-4 max-[850px]:flex-col max-[850px]:w-full">
+                  <textarea
+                    placeholder="Message"
+                    rows="2"
+                    columns="20"
+                    className=" rounded-lg p-4 text-black outline-gray-300 border-gray-300 border w-full"
+                  ></textarea>
+                </div>
+
                 <button className="bg-[#29A0F4] text-white rounded-lg p-4">
                   Next
                 </button>
