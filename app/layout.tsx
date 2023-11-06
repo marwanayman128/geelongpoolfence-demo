@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: "Geelong Pool Fence",
   description: "Pool & Spa Barrier Compliance Inspection Specialist",
   icons: {
-    icon: "/icon/favicon.ico",
+    icon: "/icon/favicon-32x32.png",
   },
 };
 
