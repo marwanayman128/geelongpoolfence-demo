@@ -15,7 +15,7 @@ export default function Section1() {
         <div className="text-white h-full z-50  w-full px-32 max-[1300px]:px-10 max-[400px]:px-5 flex justify-center items-center">
           <div className="flex justify-between w-full max-[850px]:flex-col  items-center">
             <div className=" rounded-lg relative max-[850px]:m-auto max-[850px]:my-16 max-[700px]:w-full max-[850px]:h-auto">
-              <h1 className="text-7xl font-bold leading-tight max-[1100px]:text-5xl max-[500px]:text-4xl ">
+              <h1 className="text-7xl font-bold leading-tight max-[1500px]:text-6xl max-[1100px]:text-5xl max-[500px]:text-4xl ">
                 Pool & Spa{" "}
                 <span className="text-blue-500 ">
                   Barrier <br /> Compliance
