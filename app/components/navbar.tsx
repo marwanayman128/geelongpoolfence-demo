@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import React from "react";
 
 export default function navbar() {
@@ -11,8 +12,10 @@ export default function navbar() {
       <nav className="bg-white border-gray-200 dark:bg-gray-900 static  w-full z-50">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 ">
           <a href="https://flowbite.com/" className="flex items-center">
-            <img
-              src="https://cdn-ejglc.nitrocdn.com/QAeRyrjHNnUJcHbZjRPEBlMkdHoJVLxJ/assets/static/optimized/wp-content/uploads/2021/08/28a74356e493b6ca0540c9907768fdd2.GPFSI-LOGO-300x93.png"
+            <Image
+              width={220}
+              height={120}
+              src={"/Logo.png"}
               className="h-16 "
               alt="Flowbite Logo"
             />
