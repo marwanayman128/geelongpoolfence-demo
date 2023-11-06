@@ -25,26 +25,26 @@ export default function Section1() {
               <div className="mt-10 text-2xl flex flex-col gap-4 max-[1100px]:text-lg">
                 <div className="flex gap-4 items-center">
                   <CheckCircleOutlineIcon />
-                  <h3 className="font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#2499ED] to-[#ffffff]">
+                  <h2 className="font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#2499ED] to-[#ffffff]">
                     {" "}
                     Comprehensive property inspection
-                  </h3>
+                  </h2>
                 </div>
                 <div className="flex gap-4">
                   <CheckCircleOutlineIcon />
 
-                  <h3 className="font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#2499ED] to-[#ffffff]">
+                  <h2 className="font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#2499ED] to-[#ffffff]">
                     {" "}
                     Same-day detailed report
-                  </h3>
+                  </h2>
                 </div>
                 <div className="flex gap-4">
                   <CheckCircleOutlineIcon />
 
-                  <h3 className="font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#2499ED] to-[#ffffff]">
+                  <h2 className="font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#2499ED] to-[#ffffff]">
                     {" "}
                     Proven experience & knowledge
-                  </h3>
+                  </h2>
                 </div>
               </div>
             </div>
