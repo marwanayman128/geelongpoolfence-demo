@@ -17,19 +17,49 @@ export default function contactSection() {
         </p>
         <h2 className="text-white text-xl">
           <span>
-            <ApartmentOutlinedIcon className=" mr-2 text-black border border-white bg-white  rounded-full p-2 w-10 h-10" />
+            <ApartmentOutlinedIcon
+              style={{
+                color: "black",
+                marginRight: "10px",
+                backgroundColor: "white",
+                borderRadius: "50%",
+                padding: "9px",
+                height: "40px",
+                width: "40px",
+              }}
+            />
           </span>
           Address
         </h2>
         <h2 className="text-white text-xl">
           <span>
-            <LocalPhoneOutlinedIcon className=" mr-2 text-black border border-white  bg-white  rounded-full p-2 w-10 h-10" />
+            <LocalPhoneOutlinedIcon
+              style={{
+                color: "black",
+                marginRight: "10px",
+                backgroundColor: "white",
+                borderRadius: "50%",
+                padding: "9px",
+                height: "40px",
+                width: "40px",
+              }}
+            />
           </span>
           0404 494 904
         </h2>
         <h2 className="text-white text-xl">
           <span>
-            <EmailOutlinedIcon className=" mr-2 text-black border border-white  bg-white  rounded-full p-2 w-10 h-10" />
+            <EmailOutlinedIcon
+              style={{
+                color: "black",
+                marginRight: "10px",
+                backgroundColor: "white",
+                borderRadius: "50%",
+                padding: "9px",
+                height: "40px",
+                width: "40px",
+              }}
+            />
           </span>
           mick@geelongpoolfence.com.au
         </h2>
