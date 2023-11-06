@@ -16,7 +16,6 @@ export default function navbar() {
               width={220}
               height={120}
               src={"/Logo.png"}
-              className="h-16 "
               alt="Flowbite Logo"
             />
           </a>
