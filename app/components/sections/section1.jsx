@@ -82,7 +82,7 @@ export default function Section1() {
                   />
                 </div>
                 <div className="flex gap-4 max-[850px]:flex-col max-[850px]:w-full">
-                  <select aria-label="Inspection" className="w-full rounded-lg p-4 outline-gray-300 border-gray-300 border text-gray-400" value="Option 2">
+                  <select aria-label="Inspection" className="w-full rounded-lg p-4 outline-gray-300 border-gray-300 border text-gray-400" >
                     <option value="" disabled>
                       Inspection
                     </option>
@@ -115,8 +115,8 @@ export default function Section1() {
               </form>
             </div>
           </div>
-        </div>
-      </div>
+        </div >
+      </div >
     </>
   );
 }
