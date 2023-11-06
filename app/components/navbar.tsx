@@ -1,25 +1,12 @@
 "use client";
-import { useEffect } from "react";
 import Image from "next/image";
 import React from "react";
 
 export default function navbar() {
   function toggleMenu() {
     var menu = document.getElementById("navbar-cta");
-    if (menu) {
-      menu.classList.toggle("hidden");
-    }
+    menu?.classList.toggle("hidden");
   }
-
-  useEffect(() => {
-    // Add an event listener for the visibilitychange event when the component mounts
-    document.addEventListener("visibilitychange", toggleMenu);
-
-    // Remove the event listener when the component unmounts
-    return () => {
-      document.removeEventListener("visibilitychange", toggleMenu);
-    };
-  }, []);
   return (
     <>
       <nav className="bg-white border-gray-200 dark:bg-gray-900 static  w-full z-50">
