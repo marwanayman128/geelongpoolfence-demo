@@ -55,11 +55,13 @@ export default function Section1() {
               <form className="flex flex-col p-10 gap-4 my-5">
                 <div className="flex gap-4 max-[850px]:flex-col max-[850px]:w-full ">
                   <input
+                    aria-label="Name"
                     type="text"
                     placeholder="Name"
                     className=" rounded-lg p-4 text-black outline-gray-300 border-gray-300 border"
                   />
                   <input
+                    aria-label="Phone"
                     type="text"
                     placeholder="Phone"
                     className=" rounded-lg p-4 text-black outline-gray-300 border-gray-300 border"
@@ -67,18 +69,20 @@ export default function Section1() {
                 </div>
                 <div className="flex gap-4 max-[850px]:flex-col max-[850px]:w-full">
                   <input
+                    aria-label="Email"
                     type="text"
                     placeholder="Email"
                     className=" rounded-lg p-4 text-black outline-gray-300 border-gray-300 border"
                   />
                   <input
+                    aria-label="Address"
                     type="text"
                     placeholder="Address"
                     className=" rounded-lg p-4 text-black outline-gray-300 border-gray-300 border"
                   />
                 </div>
                 <div className="flex gap-4 max-[850px]:flex-col max-[850px]:w-full">
-                  <select className="w-full rounded-lg p-4 outline-gray-300 border-gray-300 border text-gray-400" value="Option 2">
+                  <select aria-label="Inspection" className="w-full rounded-lg p-4 outline-gray-300 border-gray-300 border text-gray-400" value="Option 2">
                     <option value="" disabled>
                       Inspection
                     </option>
@@ -96,6 +100,8 @@ export default function Section1() {
                 </div>
                 <div className="flex gap-4 max-[850px]:flex-col max-[850px]:w-full">
                   <textarea
+                    aria-label="Message"
+                    type="text"
                     placeholder="Message"
                     rows="2"
                     columns="20"
