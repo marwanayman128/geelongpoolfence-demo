@@ -78,8 +78,8 @@ export default function Section1() {
                   />
                 </div>
                 <div className="flex gap-4 max-[850px]:flex-col max-[850px]:w-full">
-                  <select className="w-full rounded-lg p-4  outline-gray-300 border-gray-300 border text-gray-400">
-                    <option value="" disabled selected>
+                  <select className="w-full rounded-lg p-4 outline-gray-300 border-gray-300 border text-gray-400" value="Option 2">
+                    <option value="" disabled>
                       Inspection
                     </option>
                     <option className="text-black" value="Option 1">
@@ -92,6 +92,7 @@ export default function Section1() {
                       Re-Inspection
                     </option>
                   </select>
+
                 </div>
                 <div className="flex gap-4 max-[850px]:flex-col max-[850px]:w-full">
                   <textarea

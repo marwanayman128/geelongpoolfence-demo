@@ -108,8 +108,11 @@ export default function contactSection() {
                 Inspection
               </label>
               <div className="relative mt-2.5">
-                <select className="block w-full rounded-md border-0 px-3.5 py-2  text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                  <option value="" disabled selected>
+                <select
+                  className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  defaultValue="Option 2"
+                >
+                  <option value="" disabled>
                     Inspection
                   </option>
                   <option className="text-black" value="Option 1">
@@ -142,13 +145,13 @@ export default function contactSection() {
               </div>
             </div>
             <div className="flex gap-x-4 sm:col-span-2">
-            
               <label
                 className="text-sm leading-6 text-gray-600"
                 id="switch-1-label"
               >
-                Servicing the Greater Geelong, Surfcoast, Borough of Queenscliff, Western suburbs of Melbourne, Colac, Warrnambool and surrounding regions.
-                
+                Servicing the Greater Geelong, Surfcoast, Borough of
+                Queenscliff, Western suburbs of Melbourne, Colac, Warrnambool
+                and surrounding regions.
               </label>
             </div>
           </div>
