@@ -2,7 +2,13 @@ import React from "react";
 
 export default function twitter() {
   return (
-    <button className="Btnn">
+    <button
+      type="button"
+      data-mdb-ripple="true"
+      data-mdb-ripple-color="light"
+      aria-label="Twitter"
+      className="Btnn"
+    >
       <span className="svgContainer">
         <svg
           xmlns="http://www.w3.org/2000/svg"

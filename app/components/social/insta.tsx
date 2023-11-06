@@ -2,7 +2,13 @@ import React from "react";
 
 export default function insta() {
   return (
-    <button className="Btnn">
+    <button
+      type="button"
+      data-mdb-ripple="true"
+      data-mdb-ripple-color="light"
+      aria-label="Instagram"
+      className="Btnn"
+    >
       <span className="svgContainer">
         <svg
           fill="white"
