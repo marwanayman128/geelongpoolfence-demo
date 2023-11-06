@@ -12,20 +12,8 @@ export default function section3() {
           other commercial clients to carry out building inspections.
         </h2>
         <div className="flex justify-center gap-20 my-20 max-[700px]:flex-col max-[700px]:m-auto ">
-          <Image
-            src="/Spasa.jpg"
-            alt="image"
-            layout="responsive"
-            width={300}
-            height={300}
-          />{" "}
-          <Image
-            src="/VBA.webp"
-            alt="image"
-            layout="responsive"
-            width={300}
-            height={300}
-          />
+          <Image src="/Spasa.jpg" alt="image" width={300} height={300} />{" "}
+          <Image src="/VBA.webp" alt="image" width={300} height={300} />
         </div>
       </div>
     </>
