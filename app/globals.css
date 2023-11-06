@@ -52,7 +52,7 @@ html {
 }
 
 .OurProcess {
-    background-image: linear-gradient(to bottom, transparent 0%, rgba(17, 24, 39, 0.3) 100%), url("/FourStepBackground.png");
+    background-image: url("/FourStepBackground.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

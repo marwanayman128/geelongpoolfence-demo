@@ -1,53 +1,21 @@
-function YourCustomIcon() {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="30"
-      height="31"
-      viewBox="0 0 30 31"
-      fill="none"
-    >
-      <path
-        d="M5 8C3.4375 10.0875 2.5 12.6875 2.5 15.5C2.5 22.4 8.1 28 15 28C21.9 28 27.5 22.4 27.5 15.5C27.5 8.6 21.9 3 15 3C13.2125 3 11.5 3.375 9.9625 4.0625"
-        stroke="#2499ED"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      ></path>
-      <path
-        d="M13.5 18.7125L20.15 12.0625"
-        stroke="#2499ED"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      ></path>
-      <path
-        d="M9.84998 15.5L13.275 18.9375L16.4625 15.7625"
-        stroke="#2499ED"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      ></path>
-    </svg>
-  );
-}
+import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 export default function Section1() {
   return (
     <>
-      <div className="relative">
+      <div className="relative  h-[90vh] max-[850px]:h-[100%] w-full overflow-hidden ">
         <video
           loop
           autoPlay
           muted
           playsInline
-          className="videoFilter w-full h-[90vh] top-0 left-0 z-0 object-cover  max-[850px]:h-[190vh] [400px]-h:h-[100vh]"
+          className="videoFilter absolute top-0 left-0 w-full h-full object-cover   "
           src="/production.mp4"
         ></video>
         <div className="bg-black opacity-40 absolute top-0 left-0 w-full h-full "></div>
-        <div className="text-white absolute z-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full px-32 max-[1300px]:px-10 max-[400px]:px-5">
-          <div className="flex justify-between w-full max-[850px]:flex-col max-[850px]:mt-10">
-            <div>
-              <h1 className="text-7xl font-bold leading-tight max-[1100px]:text-5xl ">
+        <div className="text-white h-full z-50  w-full px-32 max-[1300px]:px-10 max-[400px]:px-5 flex justify-center items-center">
+          <div className="flex justify-between w-full max-[850px]:flex-col  items-center">
+            <div className=" rounded-lg relative max-[850px]:m-auto max-[850px]:my-16 max-[700px]:w-full max-[850px]:h-auto">
+              <h1 className="text-7xl font-bold leading-tight max-[1100px]:text-5xl max-[500px]:text-4xl ">
                 Pool & Spa{" "}
                 <span className="text-blue-500 ">
                   Barrier <br /> Compliance
@@ -55,15 +23,15 @@ export default function Section1() {
                 <br /> Inspection Specialist
               </h1>
               <div className="mt-10 text-2xl flex flex-col gap-4 max-[1100px]:text-lg">
-                <div className="flex gap-4">
-                  <YourCustomIcon />
+                <div className="flex gap-4 items-center">
+                  <CheckCircleOutlineIcon />
                   <h3 className="font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#2499ED] to-[#ffffff]">
                     {" "}
                     Comprehensive property inspection
                   </h3>
                 </div>
                 <div className="flex gap-4">
-                  <YourCustomIcon />
+                  <CheckCircleOutlineIcon />
 
                   <h3 className="font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#2499ED] to-[#ffffff]">
                     {" "}
@@ -71,7 +39,7 @@ export default function Section1() {
                   </h3>
                 </div>
                 <div className="flex gap-4">
-                  <YourCustomIcon />
+                  <CheckCircleOutlineIcon />
 
                   <h3 className="font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#2499ED] to-[#ffffff]">
                     {" "}
