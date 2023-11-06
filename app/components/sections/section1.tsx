@@ -40,7 +40,7 @@ export default function Section1() {
           autoPlay
           muted
           playsInline
-          className="w-full h-[90vh] top-0 left-0 z-0 object-cover  max-[850px]:h-[190vh] [400px]-h:h-[100vh]"
+          className="videoFilter w-full h-[90vh] top-0 left-0 z-0 object-cover  max-[850px]:h-[190vh] [400px]-h:h-[100vh]"
           src="/production.mp4"
         ></video>
         <div className="bg-black opacity-40 absolute top-0 left-0 w-full h-full "></div>
