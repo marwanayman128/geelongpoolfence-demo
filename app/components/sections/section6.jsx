@@ -4,9 +4,15 @@ import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import emailjs from '@emailjs/browser';
 import { Alert } from "@mui/material";
+import Collapse from '@mui/material/Collapse';
+import CloseIcon from '@mui/icons-material/Close';
+import IconButton from '@mui/material/IconButton';
+
 export default function contactSection() {
   const form = useRef();
   const [emailSent, setEmailSent] = useState(false);
+  const [open, setOpen] = React.useState(true);
+
   const sendEmail = (e) => {
     e.preventDefault();
 
@@ -17,7 +23,6 @@ export default function contactSection() {
 
         if (result.text === 'OK') {
           setEmailSent(true);
-
         }
       })
       .catch((error) => {
@@ -28,13 +33,29 @@ export default function contactSection() {
   return (
     <>
       {emailSent && (
-        <Alert
-          className="fixed top-10 right-10 bg-green-500 text-white p-2 rounded-md z-50" // Adjust styling as needed
-          severity="success"
-          onClose={() => { }}
-        >
-          Message sent successfully!
-        </Alert>
+
+        <Collapse className="fixed top-10 right-10 bg-green-500 text-white p-5 rounded-md z-50" // Adjust styling as needed
+          in={open}>
+          <Alert
+            className="fixed top-10 right-10 bg-green-500 text-white p-2 rounded-md z-50" // Adjust styling as needed
+
+            action={
+              <IconButton
+                aria-label="close"
+                color="inherit"
+                size="small"
+                onClick={() => {
+                  setOpen(false);
+                }}
+              >
+                <CloseIcon fontSize="inherit" />
+              </IconButton>
+            }
+            sx={{ mb: 2 }}
+          >
+            Message sent successfully!
+          </Alert>
+        </Collapse>
       )}
 
       <div className="isolate bg-white px-6 py-24 sm:py-32 lg:px-8 relative">
