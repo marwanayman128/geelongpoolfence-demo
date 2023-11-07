@@ -1,14 +1,13 @@
 'use client'
 import React from "react";
-import { useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import emailjs from '@emailjs/browser';
 import { Alert } from "@mui/material";
 import Collapse from '@mui/material/Collapse';
 import CloseIcon from '@mui/icons-material/Close';
 import IconButton from '@mui/material/IconButton';
+import React, { useRef, useState } from 'react'; // Import useRef and useState from React
 
-export default function contactSection() {
+export default function ContactSection() {
   const form = useRef();
   const [emailSent, setEmailSent] = useState(false);
   const [open, setOpen] = React.useState(true);
