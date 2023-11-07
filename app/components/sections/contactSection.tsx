@@ -32,6 +32,7 @@ export default function contactSection() {
           Address
         </h2>
         <h2 className="text-white text-md">
+          <a href="tel:0404494904">
           <span>
             <LocalPhoneOutlinedIcon
               style={{
@@ -46,6 +47,7 @@ export default function contactSection() {
             />
           </span>
           0404 494 904
+          </a>
         </h2>
         <h2 className="text-white text-md">
           <span>
@@ -63,7 +65,7 @@ export default function contactSection() {
           </span>
           mick@geelongpoolfence.com.au
         </h2>
-        <div className="flex gap-5 flex-col h-full  justify-end  min-w-fit  m-auto h-44  relative min-[500px]:hidden">
+        {/* <div className="flex gap-5 flex-col h-full  justify-end  min-w-fit  m-auto h-44  relative min-[500px]:hidden">
           <div className="blurryComp"></div>
           <h1 className="text-white text-3xl font-bold text-center z-40 mt-3">
             Follow us
@@ -74,8 +76,8 @@ export default function contactSection() {
             <Face />
             <Twitter />
           </div>
-        </div>
-        <div className="flex gap-5 flex-col  mt-5  max-[500px]:hidden">
+        </div> */}
+        {/* <div className="flex gap-5 flex-col  mt-5  max-[500px]:hidden">
           <h1 className="text-white text-2xl font-bold  z-40">Follow us</h1>
           <div className=" pt-1 flex gap-5 ">
             {" "}
@@ -83,7 +85,7 @@ export default function contactSection() {
             <Face />
             <Twitter />
           </div>
-        </div>
+        </div> */}
       </div>
       <div className="isolate bg-white px-6 py-32 max-[650px]:pt-6 max-[650px]:pb-12 lg:px-8 relative w-1/2 justify-center max-[650px]:w-full ">
         <div className="mx-auto max-w-2xl text-center">
