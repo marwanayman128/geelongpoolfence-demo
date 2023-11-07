@@ -13,7 +13,7 @@ export default function section5() {
         </h1>
         <div className="w-full flex  justify-center items-center  text-black my-20 gap-5 max-[900px]:flex-col">
           {/* Step 2 */}
-          <div className="max-w-[400px] min-w-[300px] p-4 bg-indigo-500 shadow-lg rounded-2xl dark:bg-[#ffffff]">
+          <div className="max-w-[400px] min-w-[300px] p-4 shadow-lg rounded-2xl bg-[#ffffff]">
             <div className="flex items-center justify-between text-black max-[500px]:flex-col">
               <p className="mb-4 text-4xl font-medium">Re-Inspection</p>
               <p className="flex flex-col text-3xl font-bold">$150</p>
@@ -58,7 +58,7 @@ export default function section5() {
             </Link>
           </div>
           {/* Step 3 */}
-          <div className="max-w-[400px] min-w-[300px] p-4 bg-indigo-500 shadow-lg rounded-2xl dark:bg-[#ffffff]">
+          <div className="max-w-[400px] min-w-[300px] p-4 shadow-lg rounded-2xl bg-[#ffffff]">
             <div className="flex items-center justify-between text-black max-[500px]:flex-col">
               <p className="mb-4 text-4xl font-medium">
                 Inspection (Compulsory)
@@ -114,7 +114,7 @@ export default function section5() {
           </div>
 
           {/* Step 1 */}
-          <div className="max-w-[400px]  min-w-[300px] p-4 bg-indigo-500 shadow-lg rounded-2xl dark:bg-[#ffffff]">
+          <div className="max-w-[400px]  min-w-[300px] p-4 shadow-lg rounded-2xl bg-[#ffffff]">
             <div className="flex items-center justify-between text-black max-[500px]:flex-col">
               <p className="mb-4 text-4xl font-medium">Pre-Inspection Report</p>
               <p className="flex flex-col text-3xl font-bold">$220</p>

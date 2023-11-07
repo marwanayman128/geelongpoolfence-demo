@@ -9,7 +9,7 @@ export default function navbar() {
   }
   return (
     <>
-      <nav className="bg-white border-gray-200 dark:bg-gray-900 static  w-full z-50">
+      <nav className="border-gray-200 bg-gray-900 static  w-full z-50">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 ">
           <a href="/" className="flex items-center">
             <Image
@@ -23,7 +23,7 @@ export default function navbar() {
             <a href="tel:0404494904">
               <button
                 type="button"
-                className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-[#2499ED] dark:hover:bg-blue-700 dark:focus:ring-blue-300 flex max-[500px]:hidden flex items-center gap-2"
+                className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 bg-[#2499ED] hover:bg-blue-700 focus:ring-blue-300 flex max-[500px]:hidden flex items-center gap-2"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -47,7 +47,7 @@ export default function navbar() {
             <button
               data-collapse-toggle="navbar-cta"
               type="button"
-              className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+              className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 text-gray-400 hover:bg-gray-700 focus:ring-gray-600"
               aria-controls="navbar-cta"
               aria-expanded="false"
               onClick={toggleMenu}
@@ -74,11 +74,11 @@ export default function navbar() {
             className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1 max-[767px]:absolute z-50   max-[767px]:top-14  max-[767px]:left-0"
             id="navbar-cta"
           >
-            <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+            <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white bg-gray-800 md:bg-gray-900 border-gray-700">
               <li>
                 <a
                   href="#home"
-                  className="block py-2 pl-3 pr-4 text-white bg-[#2499ED] rounded md:bg-transparent md:text-[#2499ED] md:p-0 md:dark:text-[#2499ED]"
+                  className="block py-2 pl-3 pr-4 text-white bg-[#2499ED] rounded md:bg-transparent md:text-[#2499ED] md:p-0 md:text-[#2499ED]"
                   aria-current="page"
                 >
                   Home
@@ -87,7 +87,7 @@ export default function navbar() {
               <li>
                 <a
                   href="#about"
-                  className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                  className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:hover:text-blue-500 text-white hover:bg-gray-700 hover:text-white md:hover:bg-transparent border-gray-700"
                 >
                   About
                 </a>
@@ -95,7 +95,7 @@ export default function navbar() {
               <li>
                 <a
                   href="#services"
-                  className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                  className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:hover:text-blue-500 text-white hover:bg-gray-700 hover:text-white md:hover:bg-transparent border-gray-700"
                 >
                   Services
                 </a>
@@ -103,7 +103,7 @@ export default function navbar() {
               <li>
                 <a
                   href="#contact"
-                  className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                  className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:hover:text-blue-500 text-white hover:bg-gray-700 hover:text-white md:hover:bg-transparent border-gray-700"
                 >
                   Contact
                 </a>
