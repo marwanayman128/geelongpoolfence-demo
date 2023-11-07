@@ -15,7 +15,7 @@ export default function contactSection() {
           Western suburbs of Melbourne, Colac, Warrnambool and surrounding
           regions.
         </p>
-        <h2 className="text-white text-md">
+        {/* <h2 className="text-white text-md">
           <span>
             <ApartmentOutlinedIcon
               style={{
@@ -30,7 +30,7 @@ export default function contactSection() {
             />
           </span>
           Address
-        </h2>
+        </h2> */}
         <h2 className="text-white text-md">
           <a href="tel:0404494904">
           <span>
