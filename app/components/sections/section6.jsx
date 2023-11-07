@@ -1,5 +1,4 @@
 'use client'
-import React from "react";
 import emailjs from '@emailjs/browser';
 import { Alert } from "@mui/material";
 import Collapse from '@mui/material/Collapse';
