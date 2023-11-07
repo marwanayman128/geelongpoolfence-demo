@@ -11,7 +11,7 @@ export default function navbar() {
     <>
       <nav className="border-gray-200 bg-gray-900 static  w-full z-50">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 ">
-          <a href="/" className="flex items-center">
+          <a href="/" className="flex items-enter">
             <Image
               width={220}
               height={120}
@@ -74,7 +74,7 @@ export default function navbar() {
             className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1 max-[767px]:absolute z-50   max-[767px]:top-14  max-[767px]:left-0"
             id="navbar-cta"
           >
-            <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white bg-gray-800 md:bg-gray-900 border-gray-700">
+            <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg  md:flex-row md:space-x-8 md:mt-0 md:border-0  border-gray-700">
               <li>
                 <a
                   href="#home"
