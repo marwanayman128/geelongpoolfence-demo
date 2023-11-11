@@ -63,7 +63,7 @@ export default function ContactSection() {
           </h2>
         </div>
         <form ref={form} onSubmit={sendEmail}
-          className="mx-auto mt-16 max-w-xl sm:mt-20"
+          className="mx-auto mt-12 max-w-xl sm:mt-20"
         >
           <div className="sm:col-span-2">
             <div>
@@ -178,9 +178,9 @@ export default function ContactSection() {
           <div className="mt-10">
             <button
               type="submit"
-              className="block w-full rounded-md bg-blue-400 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-blue-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              className="block w-full rounded-md  bg-[#2499ED] hover:bg-blue-500 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
-              {"Let's talk"}
+              {"Book now"}
             </button>
           </div>
         </form>

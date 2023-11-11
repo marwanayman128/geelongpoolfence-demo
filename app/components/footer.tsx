@@ -36,7 +36,7 @@ export default function footer() {
         © 2023 Geelong Pool Fence Safety Inspections. All rights reserved <br />
         Designed by{" "}
         <a className="text-[#2FA8FD]" href="https://quadsolution.com/">
-          QuadMarketingSolution
+          Quad Solution
         </a>
       </footer>
     </>

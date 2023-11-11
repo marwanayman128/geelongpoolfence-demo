@@ -1,26 +1,92 @@
 "use client";
 
-import React from "react";
-import ApartmentOutlinedIcon from "@mui/icons-material/ApartmentOutlined";
-import LocalPhoneOutlinedIcon from "@mui/icons-material/LocalPhoneOutlined";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
-import Insta from "@/app/components/social/insta";
-import Face from "@/app/components/social/face";
-import Twitter from "@/app/components/social/twitter";
+import LocalPhoneOutlinedIcon from "@mui/icons-material/LocalPhoneOutlined";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { sendEmail } from "@/app/utils/send-email";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export type FormData = {
   name: string;
   email: string;
+  phone: string;
   message: string;
 };
-export default function ContactSection() {
-  const { register, handleSubmit } = useForm<FormData>();
 
-  function onSubmit(data: FormData) {
-    sendEmail(data);
-  }
+export default function ContactSection() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const onSubmit = async (data: FormData) => {
+    try {
+      setIsSubmitting(true);
+      if (!data.name) {
+        throw new Error("Name is required");
+      }
+      const nameRegex = /^[a-zA-Z\s]+$/;
+      if (!nameRegex.test(data.name)) {
+        throw new Error("Invalid name format");
+      }
+
+      if (!data.email) {
+        throw new Error("Email is required");
+      }
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(data.email)) {
+        throw new Error("Invalid email address");
+      }
+
+      if (!data.message) {
+        throw new Error("Message is required");
+      }
+
+      if (!data.phone) {
+        throw new Error("Phone number is required");
+      }
+
+      const phoneNumberRegex = /^\d{10}$/;
+      if (!phoneNumberRegex.test(data.phone)) {
+        throw new Error("Invalid phone number");
+      }
+
+      const apiEndpoint = "/api/email";
+
+      await toast.promise(
+        fetch(apiEndpoint, {
+          method: "POST",
+          body: JSON.stringify(data),
+        }).then(async (res) => {
+          if (!res.ok) {
+            const errorMessage = await res.text();
+            throw new Error(errorMessage || "Failed to send message");
+          }
+
+          const responseData = await res.json();
+          return responseData.message;
+        }),
+        {
+          pending: "Sending...",
+          success: "Message sent successfully!",
+          error: "Failed to send message",
+        }
+      );
+    } catch (error) {
+      // Handle validation errors
+      if (error instanceof Error) {
+        toast.error(error.message);
+      } else {
+        console.error("Error submitting form:", error);
+        toast.error("Error submitting form");
+      }
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
   return (
     <div className="bg-gradient-to-r from-cyan-500 to-blue-500 flex justify-between items-center max-[650px]:flex-col  ">
       <div className="px-6 py-24 sm:py-32 lg:px-8 w-1/2 flex flex-col justify-center gap-5 max-[650px]:w-full ml-32 max-[1650px]:ml-0">
@@ -30,6 +96,7 @@ export default function ContactSection() {
           Western suburbs of Melbourne, Colac, Warrnambool and surrounding
           regions.
         </p>
+
         {/* <h2 className="text-white text-md">
           <span>
             <ApartmentOutlinedIcon
@@ -125,9 +192,16 @@ export default function ContactSection() {
                   type="text"
                   id="first-name"
                   autoComplete="given-name"
-                  className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className={`block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 ${
+                    errors.name ? "border-red-500" : ""
+                  }`}
                   {...register("name", { required: true })}
                 />
+                {errors.name && (
+                  <p className="mt-1 text-sm text-red-500">
+                    {errors.name.message || "Name is required"}
+                  </p>
+                )}
               </div>
             </div>
 
@@ -143,9 +217,41 @@ export default function ContactSection() {
                   type="email"
                   id="email"
                   autoComplete="email"
-                  className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className={`block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 ${
+                    errors.email ? "border-red-500" : ""
+                  }`}
                   {...register("email", { required: true })}
                 />
+                {errors.email && (
+                  <p className="mt-1 text-sm text-red-500">
+                    {errors.email.message || "Email is required"}
+                  </p>
+                )}
+              </div>
+            </div>
+
+            <div className="sm:col-span-2">
+              <label
+                htmlFor="phone"
+                className="block text-sm font-semibold leading-6 text-gray-900"
+              >
+                Phone
+              </label>
+              <div className="mt-2.5">
+                <input
+                  type="phone"
+                  id="phone"
+                  autoComplete="email"
+                  className={`block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 ${
+                    errors.phone ? "border-red-500" : ""
+                  }`}
+                  {...register("phone", { required: true })}
+                />
+                {errors.phone && (
+                  <p className="mt-1 text-sm text-red-500">
+                    {errors.phone.message || "Email is required"}
+                  </p>
+                )}
               </div>
             </div>
 
@@ -160,18 +266,26 @@ export default function ContactSection() {
                 <textarea
                   id="message"
                   rows={4}
-                  className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className={`block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 ${
+                    errors.message ? "border-red-500" : ""
+                  }`}
                   {...register("message", { required: true })}
                 />
+                {errors.message && (
+                  <p className="mt-1 text-sm text-red-500">
+                    {errors.message.message || "Message is required"}
+                  </p>
+                )}
               </div>
             </div>
           </div>
           <div className="mt-10">
             <button
+              disabled={isSubmitting ? true : false}
               type="submit"
               className="block w-full rounded-md bg-[#2FA8FD] px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-[#6dbaf1] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
-              {"Send message"}
+              {isSubmitting ? "Sending..." : "Send message"}
             </button>
           </div>
         </form>

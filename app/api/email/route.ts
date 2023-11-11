@@ -2,8 +2,9 @@ import { type NextRequest, NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 import Mail from 'nodemailer/lib/mailer';
 
+
 export async function POST(request: NextRequest) {
-  const { email, name, message } = await request.json();
+  const { email, name, message , phone , address = null, inspection = null } = await request.json();
 
   const transport = nodemailer.createTransport({
     service: 'gmail',
@@ -25,9 +26,27 @@ export async function POST(request: NextRequest) {
   const mailOptions: Mail.Options = {
     from: process.env.MY_EMAIL,
     to: process.env.MY_EMAIL,
-    // cc: email, (uncomment this line if you want to send a copy to the sender)
-    subject: `Message from ${name} (${email})`,
-    text: message,
+    cc: ['aymanmarwan00@gmail.com'],
+    subject: `GeeLong Pool Landing Page - Message from ${name} (${email})`,
+    
+    html: `<div style="background-color: #1f2937; margin-top: 8px; padding: 16px; background-image: url('https://quadsolution.com/images/case-study/rays.png'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+    <h3 style="text-align: left;  font-weight: bold; color: #ffffff; margin-bottom: 1rem; margin-top: 1rem;">
+      Message from: <span style="color: #2FA8FD;"> ${name} </span>
+      <br />
+      Email: <span style="color: #2FA8FD;"> ${email} </span>
+      <br />
+      Phone: <span style="color: #2FA8FD;"> ${phone} </span>
+      ${address ? `<br /> Address: <span style="color: #2FA8FD;"> ${address} </span>` : ''}
+      ${inspection ? `<br /> Inspection: <span style="color: #2FA8FD;"> ${inspection} </span>` : ''}
+    </h3>
+    <h1 style="text-align: center;  font-weight: bold; color: #ffffff; margin-bottom: 1rem;">
+       ${message}
+    </h1>
+    <div style="text-align: center;">
+      <img src="https://quadsolution.com/images/logo.png" alt="Logo" style="text-align: center; margin-top: 2rem; width: 200px; height: 60px;"/>
+    </div>
+  </div>
+ `,
   };
 
   const sendMailPromise = () =>
