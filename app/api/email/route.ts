@@ -1,27 +1,51 @@
+import { createHash } from 'crypto';
+
 import { type NextRequest, NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 import Mail from 'nodemailer/lib/mailer';
 
+const rateLimitWindowMs = 60000; // 1 minute
+const maxRequestsPerWindow = 5;
+
+// Store the timestamp of each request for each IP address
 const requestTimestamps = new Map<string, number[]>();
 
-// Define the rate limit settings
-const rateLimitWindowMs = 15 * 60 * 1000; // 15 minutes
-const maxRequestsPerWindow = 5; // 5 requests per 15 minutes
-export async function POST(request: NextRequest) {
-  const forwardedFor =
-  request.headers.get('x-forwarded-for') || request.headers.get('cf-connecting-ip');
-const ip = forwardedFor && forwardedFor !== '::1' ? forwardedFor.split(',')[0].trim() : request.ip || '::1';
+function hasExceededRateLimit(ip: string | undefined): boolean {
+  if (!ip) {
+    return false; // Handle the case when the IP is undefined
+  }
+  const timestamps = requestTimestamps.get(ip) || [];
+  const currentTime = Date.now();
+  const windowStart = currentTime - rateLimitWindowMs;
 
-// Check if the IP has exceeded the rate limit
-if (hasExceededRateLimit(ip)) {
-  return NextResponse.json({ message: 'Rate limit exceeded. Please try again later.' }, { status: 429 });
+  // Only keep timestamps within the current window
+  const recentTimestamps = timestamps.filter((timestamp) => timestamp > windowStart);
+
+  // Check if the number of requests within the window exceeds the limit
+  return recentTimestamps.length >= maxRequestsPerWindow;
 }
-const { email, name, message , phone , address = null, inspection = null } = await request.json();
-recordRequestTimestamp(ip);
+
+function recordRequestTimestamp(ip: string | undefined): void {
+  if (ip) {
+    const timestamps = requestTimestamps.get(ip) || [];
+    const currentTime = Date.now();
+    timestamps.push(currentTime);
+    requestTimestamps.set(ip, timestamps);
+  }
+}
+
+export async function POST(request: NextRequest) {
+  const { email, name, message, phone, address = null, inspection = null } = await request.json();
+  const ip = request.headers.get('x-forwarded-for') || request.ip;
+
+  // Check if the IP has exceeded the rate limit
+  if (hasExceededRateLimit(ip)) {
+    return NextResponse.json({ message: 'Rate limit exceeded. Please try again later.' }, { status: 429 });
+  }
 
   const transport = nodemailer.createTransport({
     service: 'gmail',
-
+   
     auth: {
       user: process.env.MY_EMAIL,
       pass: process.env.MY_PASSWORD,
@@ -67,28 +91,9 @@ recordRequestTimestamp(ip);
 
   try {
     await sendMailPromise();
+    recordRequestTimestamp(ip);
     return NextResponse.json({ message: 'Email sent' });
   } catch (err) {
     return NextResponse.json({ error: err }, { status: 500 });
   }
-}
-
-// Helper function to check if an IP has exceeded the rate limit
-function hasExceededRateLimit(ip: string): boolean {
-  const timestamps = requestTimestamps.get(ip) || [];
-  const currentTime = Date.now();
-  const validRequests = timestamps.filter((timestamp) => currentTime - timestamp < rateLimitWindowMs);
-
-  if (validRequests.length >= maxRequestsPerWindow) {
-    return true; // Exceeded rate limit
-  }
-
-  return false;
-}
-
-// Helper function to record the current timestamp for an IP
-function recordRequestTimestamp(ip: string): void {
-  const timestamps = requestTimestamps.get(ip) || [];
-  timestamps.push(Date.now());
-  requestTimestamps.set(ip, timestamps);
 }
