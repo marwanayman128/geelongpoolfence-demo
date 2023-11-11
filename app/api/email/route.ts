@@ -3,25 +3,25 @@ import nodemailer from 'nodemailer';
 import Mail from 'nodemailer/lib/mailer';
 
 const requestTimestamps = new Map<string, number[]>();
+
+// Define the rate limit settings
 const rateLimitWindowMs = 15 * 60 * 1000; // 15 minutes
 const maxRequestsPerWindow = 5; // 5 requests per 15 minutes
-
-
-
 export async function POST(request: NextRequest) {
-  const forwardedFor = request.headers.get('x-forwarded-for');
-  console.log("forwardedFor",forwardedFor)
-  const ip = forwardedFor ? forwardedFor.split(',')[0].trim() : request.ip || 'DEFAULT_IP';
+  const forwardedFor =
+  request.headers.get('x-forwarded-for') || request.headers.get('cf-connecting-ip');
+const ip = forwardedFor && forwardedFor !== '::1' ? forwardedFor.split(',')[0].trim() : request.ip || '::1';
 
-  console.log("ip",ip)
-  // Check if the IP has exceeded the rate limit
-  if (hasExceededRateLimit(ip)) {
-    return NextResponse.json({ message: 'Rate limit exceeded. Please try again later.' }, { status: 429 });
-  }
-  const { email, name, message , phone , address = null, inspection = null } = await request.json();
-  recordRequestTimestamp(ip);
+// Check if the IP has exceeded the rate limit
+if (hasExceededRateLimit(ip)) {
+  return NextResponse.json({ message: 'Rate limit exceeded. Please try again later.' }, { status: 429 });
+}
+const { email, name, message , phone , address = null, inspection = null } = await request.json();
+recordRequestTimestamp(ip);
+
   const transport = nodemailer.createTransport({
     service: 'gmail',
+
     auth: {
       user: process.env.MY_EMAIL,
       pass: process.env.MY_PASSWORD,
@@ -73,7 +73,7 @@ export async function POST(request: NextRequest) {
   }
 }
 
-
+// Helper function to check if an IP has exceeded the rate limit
 function hasExceededRateLimit(ip: string): boolean {
   const timestamps = requestTimestamps.get(ip) || [];
   const currentTime = Date.now();
@@ -86,6 +86,7 @@ function hasExceededRateLimit(ip: string): boolean {
   return false;
 }
 
+// Helper function to record the current timestamp for an IP
 function recordRequestTimestamp(ip: string): void {
   const timestamps = requestTimestamps.get(ip) || [];
   timestamps.push(Date.now());
