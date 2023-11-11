@@ -2,21 +2,26 @@ import { type NextRequest, NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 import Mail from 'nodemailer/lib/mailer';
 
+const requestTimestamps = new Map<string, number[]>();
+const rateLimitWindowMs = 15 * 60 * 1000; // 15 minutes
+const maxRequestsPerWindow = 5; // 5 requests per 15 minutes
+
+
 
 export async function POST(request: NextRequest) {
-  const { email, name, message , phone , address = null, inspection = null } = await request.json();
+  const forwardedFor = request.headers.get('x-forwarded-for');
+  console.log("forwardedFor",forwardedFor)
+  const ip = forwardedFor ? forwardedFor.split(',')[0].trim() : request.ip || 'DEFAULT_IP';
 
+  console.log("ip",ip)
+  // Check if the IP has exceeded the rate limit
+  if (hasExceededRateLimit(ip)) {
+    return NextResponse.json({ message: 'Rate limit exceeded. Please try again later.' }, { status: 429 });
+  }
+  const { email, name, message , phone , address = null, inspection = null } = await request.json();
+  recordRequestTimestamp(ip);
   const transport = nodemailer.createTransport({
     service: 'gmail',
-    /* 
-      setting service as 'gmail' is same as providing these setings:
-      host: "smtp.gmail.com",
-      port: 465,
-      secure: true
-      If you want to use a different email provider other than gmail, you need to provide these manually.
-      Or you can go use these well known services and their settings at
-      https://github.com/nodemailer/nodemailer/blob/master/lib/well-known/services.json
-  */
     auth: {
       user: process.env.MY_EMAIL,
       pass: process.env.MY_PASSWORD,
@@ -66,4 +71,23 @@ export async function POST(request: NextRequest) {
   } catch (err) {
     return NextResponse.json({ error: err }, { status: 500 });
   }
+}
+
+
+function hasExceededRateLimit(ip: string): boolean {
+  const timestamps = requestTimestamps.get(ip) || [];
+  const currentTime = Date.now();
+  const validRequests = timestamps.filter((timestamp) => currentTime - timestamp < rateLimitWindowMs);
+
+  if (validRequests.length >= maxRequestsPerWindow) {
+    return true; // Exceeded rate limit
+  }
+
+  return false;
+}
+
+function recordRequestTimestamp(ip: string): void {
+  const timestamps = requestTimestamps.get(ip) || [];
+  timestamps.push(Date.now());
+  requestTimestamps.set(ip, timestamps);
 }
