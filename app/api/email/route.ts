@@ -55,7 +55,7 @@ export async function POST(request: NextRequest) {
   const mailOptions: Mail.Options = {
     from: process.env.MY_EMAIL,
     to: process.env.MY_EMAIL,
-    cc: ['aymanmarwan00@gmail.com'],
+    // cc: ['aymanmarwan00@gmail.com'],
     subject: `GeeLong Pool Landing Page - Message from ${name} (${email})`,
     
     html: `<div style="background-color: #1f2937; margin-top: 8px; padding: 16px; background-image: url('https://quadsolution.com/images/case-study/rays.png'); background-size: cover; background-position: center; background-repeat: no-repeat;">
