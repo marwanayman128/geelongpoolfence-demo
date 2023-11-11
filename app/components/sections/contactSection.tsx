@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import ApartmentOutlinedIcon from "@mui/icons-material/ApartmentOutlined";
 import LocalPhoneOutlinedIcon from "@mui/icons-material/LocalPhoneOutlined";
@@ -5,7 +7,20 @@ import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import Insta from "@/app/components/social/insta";
 import Face from "@/app/components/social/face";
 import Twitter from "@/app/components/social/twitter";
-export default function contactSection() {
+import { useForm } from "react-hook-form";
+import { sendEmail } from "@/app/utils/send-email";
+
+export type FormData = {
+  name: string;
+  email: string;
+  message: string;
+};
+export default function ContactSection() {
+  const { register, handleSubmit } = useForm<FormData>();
+
+  function onSubmit(data: FormData) {
+    sendEmail(data);
+  }
   return (
     <div className="bg-gradient-to-r from-cyan-500 to-blue-500 flex justify-between items-center max-[650px]:flex-col  ">
       <div className="px-6 py-24 sm:py-32 lg:px-8 w-1/2 flex flex-col justify-center gap-5 max-[650px]:w-full ml-32 max-[1650px]:ml-0">
@@ -33,20 +48,20 @@ export default function contactSection() {
         </h2> */}
         <h2 className="text-white text-md">
           <a href="tel:0404494904">
-          <span>
-            <LocalPhoneOutlinedIcon
-              style={{
-                color: "black",
-                marginRight: "10px",
-                backgroundColor: "white",
-                borderRadius: "50%",
-                padding: "9px",
-                height: "40px",
-                width: "40px",
-              }}
-            />
-          </span>
-          0404 494 904
+            <span>
+              <LocalPhoneOutlinedIcon
+                style={{
+                  color: "black",
+                  marginRight: "10px",
+                  backgroundColor: "white",
+                  borderRadius: "50%",
+                  padding: "9px",
+                  height: "40px",
+                  width: "40px",
+                }}
+              />
+            </span>
+            0404 494 904
           </a>
         </h2>
         <h2 className="text-white text-md">
@@ -94,42 +109,24 @@ export default function contactSection() {
           </h2>
         </div>
         <form
-          action="#"
-          method="POST"
+          onSubmit={handleSubmit(onSubmit)}
           className="mx-auto mt-16 max-w-xl sm:mt-20"
         >
           <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
-            <div>
+            <div className="sm:col-span-2">
               <label
                 htmlFor="first-name"
                 className="block text-sm font-semibold leading-6 text-gray-900"
               >
-                First name
+                Full name
               </label>
               <div className="mt-2.5">
                 <input
                   type="text"
-                  name="first-name"
                   id="first-name"
                   autoComplete="given-name"
                   className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                />
-              </div>
-            </div>
-            <div>
-              <label
-                htmlFor="last-name"
-                className="block text-sm font-semibold leading-6 text-gray-900"
-              >
-                Last name
-              </label>
-              <div className="mt-2.5">
-                <input
-                  type="text"
-                  name="last-name"
-                  id="last-name"
-                  autoComplete="family-name"
-                  className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  {...register("name", { required: true })}
                 />
               </div>
             </div>
@@ -144,10 +141,10 @@ export default function contactSection() {
               <div className="mt-2.5">
                 <input
                   type="email"
-                  name="email"
                   id="email"
                   autoComplete="email"
                   className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  {...register("email", { required: true })}
                 />
               </div>
             </div>
@@ -161,11 +158,10 @@ export default function contactSection() {
               </label>
               <div className="mt-2.5">
                 <textarea
-                  name="message"
                   id="message"
                   rows={4}
                   className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  defaultValue={""}
+                  {...register("message", { required: true })}
                 />
               </div>
             </div>

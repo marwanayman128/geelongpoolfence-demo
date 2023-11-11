@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "./components/navbar";
 import Footer from "./components/footer";
 import { Link } from "@mui/material";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {

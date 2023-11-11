@@ -1,6 +1,37 @@
+'use client'
+import React, { useState } from "react";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 
 export default function Section1() {
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    address: "",
+    inspection: "",
+    message: "",
+  });
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch('/api/resend/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        alert('Data sent successfully');
+      } else {
+        alert('Error sending data from the form');
+      }
+    } catch (error) {
+      console.error('Error sending data', error);
+    }
+  };
   return (
     <>
       <div className="relative  h-[90vh] max-[850px]:h-[100%] w-full overflow-hidden ">
@@ -53,37 +84,45 @@ export default function Section1() {
               <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#29A0F4] px-14 py-5 rounded-lg z-50 w-64">
                 <h2 className="text-center font-bold">Book Inspection</h2>
               </div>
-              <form className="flex flex-col p-10 gap-4 my-5">
-                <div className="flex gap-4 max-[850px]:flex-col max-[850px]:w-full ">
+              <form onSubmit={handleFormSubmit} className="flex flex-col p-10 gap-4 my-5">
+                <div className="flex gap-4 max-[850px]:flex-col max-[850px]:w-full">
                   <input
                     aria-label="Name"
                     type="text"
+                    name="name" // Add name attribute
                     placeholder="Name"
-                    className=" rounded-lg p-4 text-black outline-gray-300 border-gray-300 border"
+                    className="rounded-lg p-4 text-black outline-gray-300 border-gray-300 border"
                   />
                   <input
                     aria-label="Phone"
                     type="text"
+                    name="phone" // Add name attribute
                     placeholder="Phone"
-                    className=" rounded-lg p-4 text-black outline-gray-300 border-gray-300 border"
+                    className="rounded-lg p-4 text-black outline-gray-300 border-gray-300 border"
                   />
                 </div>
                 <div className="flex gap-4 max-[850px]:flex-col max-[850px]:w-full">
                   <input
                     aria-label="Email"
                     type="text"
+                    name="email" // Add name attribute
                     placeholder="Email"
-                    className=" rounded-lg p-4 text-black outline-gray-300 border-gray-300 border"
+                    className="rounded-lg p-4 text-black outline-gray-300 border-gray-300 border"
                   />
                   <input
                     aria-label="Address"
                     type="text"
+                    name="address" // Add name attribute
                     placeholder="Address"
-                    className=" rounded-lg p-4 text-black outline-gray-300 border-gray-300 border"
+                    className="rounded-lg p-4 text-black outline-gray-300 border-gray-300 border"
                   />
                 </div>
                 <div className="flex gap-4 max-[850px]:flex-col max-[850px]:w-full">
-                  <select aria-label="Inspection" className="w-full rounded-lg p-4 outline-gray-300 border-gray-300 border text-gray-400" >
+                  <select
+                    aria-label="Inspection"
+                    name="inspection" // Add name attribute
+                    className="w-full rounded-lg p-4 outline-gray-300 border-gray-300 border text-gray-400"
+                  >
                     <option value="" disabled>
                       Inspection
                     </option>
@@ -97,16 +136,15 @@ export default function Section1() {
                       Re-Inspection
                     </option>
                   </select>
-
                 </div>
                 <div className="flex gap-4 max-[850px]:flex-col max-[850px]:w-full">
                   <textarea
                     aria-label="Message"
-                    type="text"
+                    name="message" // Add name attribute
                     placeholder="Message"
                     rows="2"
                     columns="20"
-                    className=" rounded-lg p-4 text-black outline-gray-300 border-gray-300 border w-full"
+                    className="rounded-lg p-4 text-black outline-gray-300 border-gray-300 border w-full"
                   ></textarea>
                 </div>
 
@@ -114,6 +152,7 @@ export default function Section1() {
                   Next
                 </button>
               </form>
+
             </div>
           </div>
         </div >
