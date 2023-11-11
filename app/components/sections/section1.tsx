@@ -234,8 +234,7 @@ export default function Section1() {
                   <textarea
                     aria-label="Message"
                     placeholder="Message"
-                    rows="2"
-                    columns="20"
+                    rows={3}
                     className={`rounded-lg p-4 text-black outline-gray-300 border-gray-300 border w-full ${
                       errors.message ? "border-red-500" : ""
                     }`}
