@@ -2,10 +2,11 @@
 
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import LocalPhoneOutlinedIcon from "@mui/icons-material/LocalPhoneOutlined";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ReCAPTCHA from "react-google-recaptcha";
 
 export type FormData = {
   name: string;
@@ -20,10 +21,16 @@ export default function ContactSection() {
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>();
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
   const onSubmit = async (data: FormData) => {
     try {
+      const rateLimitExceeded = checkRateLimit();
+      const recaptchaValue = await recaptchaRef.current?.execute();
+      if (rateLimitExceeded) {
+        throw new Error("Too many requests. Please try again later.");
+      }
       setIsSubmitting(true);
       if (!data.name) {
         throw new Error("Name is required");
@@ -53,6 +60,9 @@ export default function ContactSection() {
       if (!phoneNumberRegex.test(data.phone)) {
         throw new Error("Invalid phone number");
       }
+      if (!recaptchaValue) {
+        throw new Error("reCAPTCHA verification failed.");
+      }
 
       const apiEndpoint = "/api/email";
 
@@ -75,6 +85,7 @@ export default function ContactSection() {
           error: "Failed to send message",
         }
       );
+      incrementRequestCount();
     } catch (error) {
       // Handle validation errors
       if (error instanceof Error) {
@@ -86,6 +97,36 @@ export default function ContactSection() {
     } finally {
       setIsSubmitting(false);
     }
+  };
+  const checkRateLimit = (): boolean => {
+    const requestCount = parseInt(
+      localStorage.getItem("requestCount") || "0",
+      10
+    );
+    const lastRequestTimestamp = parseInt(
+      localStorage.getItem("lastRequestTimestamp") || "0",
+      10
+    );
+    const currentTime = new Date().getTime();
+
+    // Check if the request count exceeds the limit
+    if (
+      requestCount >= 3 &&
+      currentTime - lastRequestTimestamp < 15 * 60 * 1000
+    ) {
+      return true; // Rate limit exceeded
+    }
+
+    return false; // Rate limit not exceeded
+  };
+  const incrementRequestCount = (): void => {
+    const requestCount =
+      parseInt(localStorage.getItem("requestCount") || "0", 10) + 1;
+    localStorage.setItem("requestCount", requestCount.toString());
+    localStorage.setItem(
+      "lastRequestTimestamp",
+      new Date().getTime().toString()
+    );
   };
   return (
     <div className="bg-gradient-to-r from-cyan-500 to-blue-500 flex justify-between items-center max-[650px]:flex-col  ">
@@ -276,6 +317,14 @@ export default function ContactSection() {
                     {errors.message.message || "Message is required"}
                   </p>
                 )}
+              </div>
+            </div>
+            <div className="sm:col-span-2">
+              <div className="mt-2.5">
+                <ReCAPTCHA
+                  sitekey="6LfwcQwpAAAAAPAkKVqFWurMB5hUF1UogWF6ekZ7"
+                  ref={recaptchaRef}
+                />
               </div>
             </div>
           </div>

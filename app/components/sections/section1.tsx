@@ -23,7 +23,15 @@ export default function Section1() {
 
   const onSubmit = async (data: FormData) => {
     try {
+      // Check if rate limit is exceeded
+      const rateLimitExceeded = checkRateLimit();
+      console.log("rateLimitExceeded", rateLimitExceeded);
+      if (rateLimitExceeded) {
+        throw new Error("Too many requests. Please try again later.");
+      }
+
       setIsSubmitting(true);
+
       if (!data.name) {
         throw new Error("Name is required");
       }
@@ -50,7 +58,9 @@ export default function Section1() {
 
       const phoneNumberRegex = /^\d{10}$/;
       if (!phoneNumberRegex.test(data.phone)) {
-        throw new Error("Invalid phone number");
+        throw new Error(
+          "Invalid phone number, must be 10 digits with no spaces or any symbols"
+        );
       }
 
       if (!data.address) {
@@ -82,6 +92,9 @@ export default function Section1() {
           error: "Failed to send message",
         }
       );
+
+      // Increment the request count
+      incrementRequestCount();
     } catch (error) {
       // Handle validation errors
       if (error instanceof Error) {
@@ -93,6 +106,40 @@ export default function Section1() {
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  // Helper function to check if rate limit is exceeded
+  const checkRateLimit = (): boolean => {
+    const requestCount = parseInt(
+      localStorage.getItem("requestCount") || "0",
+      10
+    );
+    const lastRequestTimestamp = parseInt(
+      localStorage.getItem("lastRequestTimestamp") || "0",
+      10
+    );
+    const currentTime = new Date().getTime();
+
+    // Check if the request count exceeds the limit
+    if (
+      requestCount >= 3 &&
+      currentTime - lastRequestTimestamp < 15 * 60 * 1000
+    ) {
+      return true; // Rate limit exceeded
+    }
+
+    return false; // Rate limit not exceeded
+  };
+
+  // Helper function to increment the request count
+  const incrementRequestCount = (): void => {
+    const requestCount =
+      parseInt(localStorage.getItem("requestCount") || "0", 10) + 1;
+    localStorage.setItem("requestCount", requestCount.toString());
+    localStorage.setItem(
+      "lastRequestTimestamp",
+      new Date().getTime().toString()
+    );
   };
 
   // const handleFormSubmit = async (e) => {

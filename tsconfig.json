@@ -30,6 +30,6 @@
     "app/components/sections/section4.js",
     "app/components/sections/section4.jsx", // Include the JSX file
     "app/components/sections/section1.jsx"   // Include the JSX file
-, "app/components/sections/section6.jsx", "app/api/email/route.js"  ],
+, "app/components/sections/section6.jsx", "app/api/email/route.js", "app/components/sections/test.jsx"  ],
   "exclude": ["node_modules"]
 }
