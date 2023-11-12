@@ -23,15 +23,18 @@ export default function ContactSection() {
   } = useForm<FormData>();
 
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const recaptchaRef = useRef<ReCAPTCHA>(null);
+  const recaptchaRef = useRef<ReCAPTCHA | null>(null);
   const onSubmit = async (data: FormData) => {
     try {
       const rateLimitExceeded = checkRateLimit();
-      const recaptchaValue = await recaptchaRef.current?.execute();
       if (rateLimitExceeded) {
         throw new Error("Too many requests. Please try again later.");
       }
       setIsSubmitting(true);
+      const recaptchaValue = recaptchaRef.current?.getValue();
+      if (!recaptchaValue) {
+        throw new Error("reCAPTCHA verification failed.");
+      }
       if (!data.name) {
         throw new Error("Name is required");
       }
@@ -59,9 +62,6 @@ export default function ContactSection() {
       const phoneNumberRegex = /^\d{10}$/;
       if (!phoneNumberRegex.test(data.phone)) {
         throw new Error("Invalid phone number");
-      }
-      if (!recaptchaValue) {
-        throw new Error("reCAPTCHA verification failed.");
       }
 
       const apiEndpoint = "/api/email";
@@ -108,15 +108,12 @@ export default function ContactSection() {
       10
     );
     const currentTime = new Date().getTime();
-
-    // Check if the request count exceeds the limit
     if (
       requestCount >= 3 &&
       currentTime - lastRequestTimestamp < 15 * 60 * 1000
     ) {
       return true; // Rate limit exceeded
     }
-
     return false; // Rate limit not exceeded
   };
   const incrementRequestCount = (): void => {
@@ -324,7 +321,6 @@ export default function ContactSection() {
                 <ReCAPTCHA
                   sitekey="6LecgwwpAAAAADXs9eQnQLSf3ieOUdE6uXr34Yjd"
                   ref={recaptchaRef}
-                  size="invisible"
                 />
               </div>
             </div>
