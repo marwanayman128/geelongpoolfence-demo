@@ -324,6 +324,7 @@ export default function ContactSection() {
                 <ReCAPTCHA
                   sitekey="6LecgwwpAAAAADXs9eQnQLSf3ieOUdE6uXr34Yjd"
                   ref={recaptchaRef}
+                  size="invisible"
                 />
               </div>
             </div>
