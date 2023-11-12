@@ -322,7 +322,7 @@ export default function ContactSection() {
             <div className="sm:col-span-2">
               <div className="mt-2.5">
                 <ReCAPTCHA
-                  sitekey="6LfwcQwpAAAAAPAkKVqFWurMB5hUF1UogWF6ekZ7"
+                  sitekey="6LecgwwpAAAAADXs9eQnQLSf3ieOUdE6uXr34Yjd"
                   ref={recaptchaRef}
                 />
               </div>
