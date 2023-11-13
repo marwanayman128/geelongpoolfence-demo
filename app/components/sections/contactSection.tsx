@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ReCAPTCHA from "react-google-recaptcha";
+import { useRouter } from "next/navigation";
 
 export type FormData = {
   name: string;
@@ -21,7 +22,7 @@ export default function ContactSection() {
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>();
-
+  const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const recaptchaRef = useRef<ReCAPTCHA | null>(null);
   const onSubmit = async (data: FormData) => {
@@ -86,6 +87,7 @@ export default function ContactSection() {
         }
       );
       incrementRequestCount();
+      router.push("/thankyou");
     } catch (error) {
       // Handle validation errors
       if (error instanceof Error) {

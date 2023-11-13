@@ -2,8 +2,10 @@
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useRouter } from "next/navigation";
 
 export type FormData = {
   name: string;
@@ -14,6 +16,7 @@ export type FormData = {
   inspection: string;
 };
 export default function Section1() {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -95,6 +98,8 @@ export default function Section1() {
 
       // Increment the request count
       incrementRequestCount();
+      // Redirect to the thank you page
+      router.push("/thankyou");
     } catch (error) {
       // Handle validation errors
       if (error instanceof Error) {
