@@ -59,12 +59,7 @@ export default function Section1() {
         throw new Error("Phone number is required");
       }
 
-      const phoneNumberRegex = /^\d{10}$/;
-      if (!phoneNumberRegex.test(data.phone)) {
-        throw new Error(
-          "Invalid phone number, must be 10 digits with no spaces or any symbols"
-        );
-      }
+     
 
       if (!data.address) {
         throw new Error("Address is required");
