@@ -32,6 +32,7 @@ export default function Home() {
 
       </Head>
       <Section1 />
+      <div>Hello</div>
       <Section2 />
       <Section4 />
       <Section3 />
