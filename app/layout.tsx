@@ -6,6 +6,7 @@ import Footer from "./components/footer";
 import { Link } from "@mui/material";
 import { ToastContainer } from "react-toastify";
 const inter = Inter({ subsets: ["latin"] });
+import Script from "./script";
 
 export const metadata: Metadata = {
   title: "Geelong Pool Fence",
@@ -22,7 +23,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-        
+        <Script />
       <body className={inter.className + " overflow-x-hidden"}>
         <Link href="/book-now">
           <button className="bg-[#2499ED] z-50 fixed top-1/2 transform -translate-y-1/2 right-[-60px] -rotate-90 p-5 rounded-xl text-white flex gap-5 max-[700px]:hidden ">
