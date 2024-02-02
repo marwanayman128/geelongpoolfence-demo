@@ -6,6 +6,7 @@ import Footer from "./components/footer";
 import { Link } from "@mui/material";
 import { ToastContainer } from "react-toastify";
 const inter = Inter({ subsets: ["latin"] });
+import Head from 'next/head';
 
 export const metadata: Metadata = {
   title: "Geelong Pool Fence",
@@ -22,7 +23,26 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-     
+        <Head>
+        {/* Google Analytics gtag.js script */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11412063683"></script>
+        <script>
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-11412063683');
+          `}
+        </script>
+        <script>
+          {`
+            gtag('config', 'AW-11412063683/wBg4CMGT4vYYEMOL2cEq', {
+              'phone_conversion_number': '0404 494 904'
+            });
+          `}
+        </script>
+
+      </Head>
       <body className={inter.className + " overflow-x-hidden"}>
         <Link href="/book-now">
           <button className="bg-[#2499ED] z-50 fixed top-1/2 transform -translate-y-1/2 right-[-60px] -rotate-90 p-5 rounded-xl text-white flex gap-5 max-[700px]:hidden ">
