@@ -60,10 +60,7 @@ export default function ContactSection() {
         throw new Error("Phone number is required");
       }
 
-      const phoneNumberRegex = /^\d{10}$/;
-      if (!phoneNumberRegex.test(data.phone)) {
-        throw new Error("Invalid phone number");
-      }
+    
 
       const apiEndpoint = "/api/email";
 
