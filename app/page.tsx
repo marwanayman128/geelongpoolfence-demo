@@ -20,7 +20,10 @@ export default function Home() {
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', 'AW-11412063683');
-
+          `}
+        </script>
+        <script>
+          {`
             gtag('config', 'AW-11412063683/wBg4CMGT4vYYEMOL2cEq', {
               'phone_conversion_number': '0404 494 904'
             });
