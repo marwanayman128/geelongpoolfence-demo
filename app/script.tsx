@@ -7,9 +7,9 @@ import GoogleTagThankYou from "./api/google-tag-thankyou.jsx";
 const Page2 = () => {
   const pathname = usePathname();
 
-  const isThankYouPage = pathname === "/thankyou";
+  const isHome = pathname === "/" || "/book-now";
 
-  return <head>{isThankYouPage ? <GoogleTagThankYou /> : <GoogleTag />}</head>;
+  return <head>{isHome ? <GoogleTag /> :  <GoogleTagThankYou />}</head>;
 };
 
 export default Page2;
