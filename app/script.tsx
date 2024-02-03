@@ -8,7 +8,6 @@ const Page2 = () => {
   const pathname = usePathname();
 
   const isThankYouPage = pathname === "/thankyou";
-  console.log("isThankYouPage", isThankYouPage);
 
   return <head>{isThankYouPage ? <GoogleTagThankYou /> : <GoogleTag />}</head>;
 };
