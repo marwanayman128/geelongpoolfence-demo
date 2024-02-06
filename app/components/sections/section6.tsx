@@ -31,7 +31,7 @@ export default function ContactSection() {
         throw new Error("Too many requests. Please try again later.");
       }
       setIsSubmitting(true);
-
+      // ds
       if (!data.name) {
         throw new Error("Name is required");
       }
