@@ -6,7 +6,6 @@ import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import ReCAPTCHA from "react-google-recaptcha";
 import { useRouter } from "next/navigation";
 
 export type FormData = {
@@ -25,7 +24,6 @@ export default function ContactSection() {
   } = useForm<FormData>();
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const recaptchaRef = useRef<ReCAPTCHA | null>(null);
   const onSubmit = async (data: FormData) => {
     try {
       const rateLimitExceeded = checkRateLimit();
@@ -33,10 +31,7 @@ export default function ContactSection() {
         throw new Error("Too many requests. Please try again later.");
       }
       setIsSubmitting(true);
-      const recaptchaValue = recaptchaRef.current?.getValue();
-      if (!recaptchaValue) {
-        throw new Error("reCAPTCHA verification failed.");
-      }
+
       if (!data.name) {
         throw new Error("Name is required");
       }
