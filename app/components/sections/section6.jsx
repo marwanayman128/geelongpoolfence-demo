@@ -4,7 +4,9 @@ import { Alert } from "@mui/material";
 import Collapse from '@mui/material/Collapse';
 import CloseIcon from '@mui/icons-material/Close';
 import IconButton from '@mui/material/IconButton';
-import React, { useRef, useState, useEffect, useForm } from 'react'; // Import useRef and useState from React
+import React, { useRef, useState } from 'react'; // Import useRef and useState from React
+import { useForm } from 'react-hook-form'; // Assuming you are using react-hook-form
+
 
 
 export default function ContactSection() {
@@ -13,9 +15,10 @@ export default function ContactSection() {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const recaptchaRef = useRef < ReCAPTCHA | null > (null);
+  const recaptchaRef = useRef(null);
+  const [emailSent, setEmailSent] = useState(false); // Add state for emailSent
+  const [open, setOpen] = useState(true); // Add state for open
   const onSubmit = async (data) => {
     try {
       const rateLimitExceeded = checkRateLimit();
