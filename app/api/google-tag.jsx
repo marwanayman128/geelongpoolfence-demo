@@ -17,7 +17,7 @@ const GoogleTag = () => (
     <script dangerouslySetInnerHTML={{
       __html:
         `
-        gtag('config', 'AW-11481638760/7ougCNKv6Y0ZEOjO7-Iq', {
+        gtag('config', 'AW-11412063683/wBg4CMGT4vYYEMOL2cEq', {
           'phone_conversion_number': '0404 494 904'
         });
       `
