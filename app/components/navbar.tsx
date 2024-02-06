@@ -93,7 +93,7 @@ const Navbar = () => {
           >
             <li>
               <a
-                href="#home"
+                href="/#home"
                 className={`block py-2 pl-3 pr-4 text-white ${
                   activeLink === "#home" ? "bg-[#2499ED] text-white" : ""
                 } rounded  md:px-2 `}
@@ -103,7 +103,7 @@ const Navbar = () => {
             </li>
             <li>
               <a
-                href="#about"
+                href="/#about"
                 className={`block py-2 pl-3 pr-4 text-gray-900 rounded  ${
                   activeLink === "#about"
                     ? " md:bg-[#2499ED] md:px-2  text-white "
@@ -115,7 +115,7 @@ const Navbar = () => {
             </li>
             <li>
               <a
-                href="#services"
+                href="/#services"
                 className={`block py-2 pl-3 pr-4 text-gray-900 rounded  ${
                   activeLink === "#services"
                     ? " bg-[#2499ED] md:px-2  text-white "
@@ -127,7 +127,7 @@ const Navbar = () => {
             </li>
             <li>
               <a
-                href="#contact"
+                href="/#contact"
                 className={`block py-2 pl-3 pr-4 text-gray-900 rounded  ${
                   activeLink === "#contact"
                     ? " bg-[#2499ED] md:px-2  text-white "

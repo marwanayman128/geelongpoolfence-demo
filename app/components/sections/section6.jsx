@@ -6,27 +6,114 @@ import CloseIcon from '@mui/icons-material/Close';
 import IconButton from '@mui/material/IconButton';
 import React, { useRef, useState } from 'react'; // Import useRef and useState from React
 
+
 export default function ContactSection() {
-  const form = useRef();
-  const [emailSent, setEmailSent] = useState(false);
-  const [open, setOpen] = React.useState(true);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const router = useRouter();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const recaptchaRef = useRef < ReCAPTCHA | null > (null);
+  const onSubmit = async (data) => {
+    try {
+      const rateLimitExceeded = checkRateLimit();
+      if (rateLimitExceeded) {
+        throw new Error("Too many requests. Please try again later.");
+      }
+      setIsSubmitting(true);
+      const recaptchaValue = recaptchaRef.current?.getValue();
+      if (!recaptchaValue) {
+        throw new Error("reCAPTCHA verification failed.");
+      }
+      if (!data.name) {
+        throw new Error("Name is required");
+      }
+      const nameRegex = /^[a-zA-Z\s]+$/;
+      if (!nameRegex.test(data.name)) {
+        throw new Error("Invalid name format");
+      }
 
-  const sendEmail = (e) => {
-    e.preventDefault();
+      if (!data.email) {
+        throw new Error("Email is required");
+      }
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(data.email)) {
+        throw new Error("Invalid email address");
+      }
 
-    emailjs
-      .sendForm('service_0ddyb9l', 'template_2790ybp', form.current, '9sgOe7r-ELP1nMQZx')
-      .then((result) => {
-        console.log(result.text);
+      if (!data.message) {
+        throw new Error("Message is required");
+      }
 
-        if (result.text === 'OK') {
-          setEmailSent(true);
+      if (!data.phone) {
+        throw new Error("Phone number is required");
+      }
+
+
+
+      const apiEndpoint = "/api/email";
+
+      await toast.promise(
+        fetch(apiEndpoint, {
+          method: "POST",
+          body: JSON.stringify(data),
+        }).then(async (res) => {
+          if (!res.ok) {
+            const errorMessage = await res.text();
+            throw new Error(errorMessage || "Failed to send message");
+          }
+
+          const responseData = await res.json();
+          return responseData.message;
+        }),
+        {
+          pending: "Sending...",
+          success: "Message sent successfully!",
+          error: "Failed to send message",
         }
-      })
-      .catch((error) => {
-        console.log(error.text);
-      });
-
+      );
+      incrementRequestCount();
+      router.push("/thankyou");
+    } catch (error) {
+      // Handle validation errors
+      if (error instanceof Error) {
+        toast.error(error.message);
+      } else {
+        console.error("Error submitting form:", error);
+        toast.error("Error submitting form");
+      }
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+  const checkRateLimit = () => {
+    const requestCount = parseInt(
+      localStorage.getItem("requestCount") || "0",
+      10
+    );
+    const lastRequestTimestamp = parseInt(
+      localStorage.getItem("lastRequestTimestamp") || "0",
+      10
+    );
+    const currentTime = new Date().getTime();
+    if (
+      requestCount >= 3 &&
+      currentTime - lastRequestTimestamp < 15 * 60 * 1000
+    ) {
+      return true; // Rate limit exceeded
+    }
+    return false; // Rate limit not exceeded
+  };
+  const incrementRequestCount = () => {
+    const requestCount =
+      parseInt(localStorage.getItem("requestCount") || "0", 10) + 1;
+    localStorage.setItem("requestCount", requestCount.toString());
+    localStorage.setItem(
+      "lastRequestTimestamp",
+      new Date().getTime().toString()
+    );
   };
   return (
     <>
@@ -62,7 +149,7 @@ export default function ContactSection() {
             Book Now
           </h2>
         </div>
-        <form ref={form} onSubmit={sendEmail}
+        <form onSubmit={handleSubmit(onSubmit)}
           className="mx-auto mt-12 max-w-xl sm:mt-20"
         >
           <div className="sm:col-span-2">
@@ -177,10 +264,11 @@ export default function ContactSection() {
           </div>
           <div className="mt-10">
             <button
+              disabled={isSubmitting ? true : false}
               type="submit"
-              className="block w-full rounded-md  bg-[#2499ED] hover:bg-blue-500 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              className="block w-full rounded-md bg-[#2FA8FD] px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-[#6dbaf1] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
-              {"Book now"}
+              {isSubmitting ? "Sending..." : "Book Now"}
             </button>
           </div>
         </form>

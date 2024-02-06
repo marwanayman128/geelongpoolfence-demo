@@ -60,8 +60,6 @@ export default function ContactSection() {
         throw new Error("Phone number is required");
       }
 
-    
-
       const apiEndpoint = "/api/email";
 
       await toast.promise(
@@ -315,7 +313,7 @@ export default function ContactSection() {
                 )}
               </div>
             </div>
-{/*             <div className="sm:col-span-2">
+            {/*             <div className="sm:col-span-2">
               <div className="mt-2.5">
                 <ReCAPTCHA
                   sitekey="6LecgwwpAAAAADXs9eQnQLSf3ieOUdE6uXr34Yjd"
