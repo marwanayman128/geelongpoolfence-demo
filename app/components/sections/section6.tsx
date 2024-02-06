@@ -14,6 +14,7 @@ export type FormData = {
   phone: string;
   message: string;
   address: string;
+  inspection: string;
 };
 
 export default function ContactSection() {
