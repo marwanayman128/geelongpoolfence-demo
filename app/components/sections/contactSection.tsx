@@ -315,14 +315,14 @@ export default function ContactSection() {
                 )}
               </div>
             </div>
-            <div className="sm:col-span-2">
+{/*             <div className="sm:col-span-2">
               <div className="mt-2.5">
                 <ReCAPTCHA
                   sitekey="6LecgwwpAAAAADXs9eQnQLSf3ieOUdE6uXr34Yjd"
                   ref={recaptchaRef}
                 />
               </div>
-            </div>
+            </div> */}
           </div>
           <div className="mt-10">
             <button
