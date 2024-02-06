@@ -3,7 +3,7 @@ import React from 'react';
 
 const GoogleTag = () => (
   <>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11481638760"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11412063683"></script>
     <script dangerouslySetInnerHTML={{
       __html:
         `
@@ -11,14 +11,14 @@ const GoogleTag = () => (
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
 
-        gtag('config', 'AW-11481638760');
+        gtag('config', 'AW-11412063683');
       `
     }}></script>
     <script dangerouslySetInnerHTML={{
       __html:
         `
         gtag('config', 'AW-11481638760/7ougCNKv6Y0ZEOjO7-Iq', {
-          'phone_conversion_number': '0473 220 817'
+          'phone_conversion_number': '0404 494 904'
         });
       `
     }}></script>
