@@ -14,6 +14,7 @@ export type FormData = {
   email: string;
   phone: string;
   message: string;
+  address: string;
 };
 
 export default function ContactSection() {
@@ -58,6 +59,9 @@ export default function ContactSection() {
 
       if (!data.phone) {
         throw new Error("Phone number is required");
+      }
+      if (!data.address) {
+        throw new Error("Address is required");
       }
 
       const apiEndpoint = "/api/email";
@@ -127,7 +131,7 @@ export default function ContactSection() {
       <div className="isolate bg-white px-6 py-32 max-[650px]:pt-6 max-[650px]:pb-12 lg:px-8 relative w-full justify-center max-[650px]:w-full ">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            <br /> Let us know how to get back to you.
+            <br /> Book Now.
           </h2>
         </div>
         <form
@@ -212,6 +216,57 @@ export default function ContactSection() {
 
             <div className="sm:col-span-2">
               <label
+                htmlFor="address"
+                className="block text-sm font-semibold leading-6 text-gray-900"
+              >
+                Address
+              </label>
+              <div className="mt-2.5">
+                <input
+                  type="address"
+                  id="address"
+                  autoComplete="address"
+                  className={`block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 ${
+                    errors.address ? "border-red-500" : ""
+                  }`}
+                  {...register("address", { required: true })}
+                />
+                {errors.address && (
+                  <p className="mt-1 text-sm text-red-500">
+                    {errors.address.message || "address is required"}
+                  </p>
+                )}
+              </div>
+            </div>
+
+            <div className="sm:col-span-2">
+              <label
+                htmlFor="inspection"
+                className="block text-sm font-semibold leading-6 text-gray-900"
+              >
+                Inspection
+              </label>
+              <div className="mt-2.5">
+                <select
+                  aria-label="Inspection"
+                  className="w-full rounded-lg p-4 outline-gray-300 border-gray-300 border text-gray-400 "
+                  name="inspection"
+                >
+                  <option className="text-black" value="Pre-Inspection">
+                    Pre-Inspection
+                  </option>
+                  <option className="text-black" value="Inspection">
+                    Inspection
+                  </option>
+                  <option className="text-black" value="Re-Inspection">
+                    Re-Inspection
+                  </option>
+                </select>
+              </div>
+            </div>
+
+            <div className="sm:col-span-2">
+              <label
                 htmlFor="message"
                 className="block text-sm font-semibold leading-6 text-gray-900"
               >
@@ -248,7 +303,7 @@ export default function ContactSection() {
               type="submit"
               className="block w-full rounded-md bg-[#2FA8FD] px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-[#6dbaf1] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
-              {isSubmitting ? "Sending..." : "Send message"}
+              {isSubmitting ? "Sending..." : "Book Now"}
             </button>
           </div>
         </form>
