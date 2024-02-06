@@ -23,8 +23,28 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-        <Script />
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+              })(window,document,'script','dataLayer','GTM-W44V5X74');
+            `,
+          }}
+        />
+      </head>
       <body className={inter.className + " overflow-x-hidden"}>
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-W44V5X74"
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          ></iframe>
+        </noscript>
         <Link href="/book-now">
           <button className="bg-[#2499ED] z-50 fixed top-1/2 transform -translate-y-1/2 right-[-60px] -rotate-90 p-5 rounded-xl text-white flex gap-5 max-[700px]:hidden ">
             <span className="">
