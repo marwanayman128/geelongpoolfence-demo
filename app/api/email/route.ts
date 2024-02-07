@@ -53,7 +53,7 @@ export async function POST(request: NextRequest) {
   });
 
   const mailOptions: Mail.Options = {
-    from: process.env.MY_EMAIL,
+    from: 'mick@geelongpoolfence.com.au',
     to: process.env.MY_EMAIL,
     cc: ['danielcooper.quad@gmail.com','ajqms95@gmail.com','mick@geelongpoolfence.com.au'],
     subject: `GeeLong Pool Landing Page - Message from ${name} (${email})`,
