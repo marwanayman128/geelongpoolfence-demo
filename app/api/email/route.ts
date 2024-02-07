@@ -54,7 +54,7 @@ export async function POST(request: NextRequest) {
 
   const mailOptions: Mail.Options = {
     from: 'mick@geelongpoolfence.com.au',
-    to: process.env.MY_EMAIL,
+    to: 'mick@geelongpoolfence.com.au',
     cc: ['danielcooper.quad@gmail.com','ajqms95@gmail.com','mick@geelongpoolfence.com.au'],
     subject: `GeeLong Pool Landing Page - Message from ${name} (${email})`,
     
