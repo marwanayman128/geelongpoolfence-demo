@@ -22,10 +22,9 @@ export default function section5() {
             <ul className="w-full mt-6 mb-6 text-sm text-black">
               <li className="mb-3 flex items-center ">
                 <CheckCircleIcon className="w-6 h-6 mr-2" />
-                After the inspection, you have 60 days to rectify non-compliant
-                elements.
+                Only applies to remote areas.
               </li>
-              <li className="mb-3 flex items-center ">
+              {/* <li className="mb-3 flex items-center ">
                 <CheckCircleIcon className="w-6 h-6 mr-2" />
                 Provides ample time for compliance
               </li>
@@ -46,7 +45,7 @@ export default function section5() {
                 {
                   "Your next certificate will be due in 4 years, with reminders sent in advance."
                 }
-              </li>
+              </li> */}
             </ul>
             <Link href="/book-now">
               <button
