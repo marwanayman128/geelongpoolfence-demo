@@ -24,7 +24,7 @@ export default function ContactSection() {
   } = useForm<FormData>();
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const recaptchaRef = useRef<ReCAPTCHA | null>(null);
+  // const recaptchaRef = useRef<ReCAPTCHA | null>(null);
   const onSubmit = async (data: FormData) => {
     try {
       // const rateLimitExceeded = checkRateLimit();
@@ -32,10 +32,10 @@ export default function ContactSection() {
       //   throw new Error("Too many requests. Please try again later.");
       // }
       setIsSubmitting(true);
-      const recaptchaValue = recaptchaRef.current?.getValue();
-      if (!recaptchaValue) {
-        throw new Error("reCAPTCHA verification failed.");
-      }
+      // const recaptchaValue = recaptchaRef.current?.getValue();
+      // if (!recaptchaValue) {
+      //   throw new Error("reCAPTCHA verification failed.");
+      // }
       if (!data.name) {
         throw new Error("Name is required");
       }
@@ -81,7 +81,7 @@ export default function ContactSection() {
           error: "Failed to send message",
         }
       );
-      incrementRequestCount();
+      // incrementRequestCount();
       router.push("/thankyou");
     } catch (error) {
       // Handle validation errors
@@ -95,33 +95,33 @@ export default function ContactSection() {
       setIsSubmitting(false);
     }
   };
-  const checkRateLimit = (): boolean => {
-    const requestCount = parseInt(
-      localStorage.getItem("requestCount") || "0",
-      10
-    );
-    const lastRequestTimestamp = parseInt(
-      localStorage.getItem("lastRequestTimestamp") || "0",
-      10
-    );
-    const currentTime = new Date().getTime();
-    if (
-      requestCount >= 3 &&
-      currentTime - lastRequestTimestamp < 15 * 60 * 1000
-    ) {
-      return true; // Rate limit exceeded
-    }
-    return false; // Rate limit not exceeded
-  };
-  const incrementRequestCount = (): void => {
-    const requestCount =
-      parseInt(localStorage.getItem("requestCount") || "0", 10) + 1;
-    localStorage.setItem("requestCount", requestCount.toString());
-    localStorage.setItem(
-      "lastRequestTimestamp",
-      new Date().getTime().toString()
-    );
-  };
+  // const checkRateLimit = (): boolean => {
+  //   const requestCount = parseInt(
+  //     localStorage.getItem("requestCount") || "0",
+  //     10
+  //   );
+  //   const lastRequestTimestamp = parseInt(
+  //     localStorage.getItem("lastRequestTimestamp") || "0",
+  //     10
+  //   );
+  //   const currentTime = new Date().getTime();
+  //   if (
+  //     requestCount >= 3 &&
+  //     currentTime - lastRequestTimestamp < 15 * 60 * 1000
+  //   ) {
+  //     return true; // Rate limit exceeded
+  //   }
+  //   return false; // Rate limit not exceeded
+  // };
+  // const incrementRequestCount = (): void => {
+  //   const requestCount =
+  //     parseInt(localStorage.getItem("requestCount") || "0", 10) + 1;
+  //   localStorage.setItem("requestCount", requestCount.toString());
+  //   localStorage.setItem(
+  //     "lastRequestTimestamp",
+  //     new Date().getTime().toString()
+  //   );
+  // };
   return (
     <div className="bg-gradient-to-r from-cyan-500 to-blue-500 flex justify-between items-center max-[650px]:flex-col  ">
       <div className="px-6 py-24 sm:py-32 lg:px-8 w-1/2 flex flex-col justify-center gap-5 max-[650px]:w-full ml-32 max-[1650px]:ml-0">
