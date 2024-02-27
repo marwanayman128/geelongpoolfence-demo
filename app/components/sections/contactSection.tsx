@@ -27,10 +27,10 @@ export default function ContactSection() {
   const recaptchaRef = useRef<ReCAPTCHA | null>(null);
   const onSubmit = async (data: FormData) => {
     try {
-      const rateLimitExceeded = checkRateLimit();
-      if (rateLimitExceeded) {
-        throw new Error("Too many requests. Please try again later.");
-      }
+      // const rateLimitExceeded = checkRateLimit();
+      // if (rateLimitExceeded) {
+      //   throw new Error("Too many requests. Please try again later.");
+      // }
       setIsSubmitting(true);
       const recaptchaValue = recaptchaRef.current?.getValue();
       if (!recaptchaValue) {
