@@ -80,7 +80,7 @@ export default function ContactSection() {
           error: "Failed to send message",
         }
       );
-      incrementRequestCount();
+      // incrementRequestCount();
       router.push("/thankyou");
     } catch (error) {
       // Handle validation errors
