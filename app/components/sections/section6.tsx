@@ -27,10 +27,10 @@ export default function ContactSection() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const onSubmit = async (data: FormData) => {
     try {
-      const rateLimitExceeded = checkRateLimit();
-      if (rateLimitExceeded) {
-        throw new Error("Too many requests. Please try again later.");
-      }
+      // const rateLimitExceeded = checkRateLimit();
+      // if (rateLimitExceeded) {
+      //   throw new Error("Too many requests. Please try again later.");
+      // }
       setIsSubmitting(true);
       if (!data.name) {
         throw new Error("Name is required");
