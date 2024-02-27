@@ -27,11 +27,11 @@ export default function Section1() {
   const onSubmit = async (data: FormData) => {
     try {
       // Check if rate limit is exceeded
-      const rateLimitExceeded = checkRateLimit();
-      console.log("rateLimitExceeded", rateLimitExceeded);
-      if (rateLimitExceeded) {
-        throw new Error("Too many requests. Please try again later.");
-      }
+      // const rateLimitExceeded = checkRateLimit();
+      // console.log("rateLimitExceeded", rateLimitExceeded);
+      // if (rateLimitExceeded) {
+      //   throw new Error("Too many requests. Please try again later.");
+      // }
 
       setIsSubmitting(true);
 
@@ -92,7 +92,7 @@ export default function Section1() {
       );
 
       // Increment the request count
-      incrementRequestCount();
+      // incrementRequestCount();
       // Redirect to the thank you page
       router.push("/thankyou");
     } catch (error) {
@@ -109,38 +109,38 @@ export default function Section1() {
   };
 
   // Helper function to check if rate limit is exceeded
-  const checkRateLimit = (): boolean => {
-    const requestCount = parseInt(
-      localStorage.getItem("requestCount") || "0",
-      10
-    );
-    const lastRequestTimestamp = parseInt(
-      localStorage.getItem("lastRequestTimestamp") || "0",
-      10
-    );
-    const currentTime = new Date().getTime();
+  // const checkRateLimit = (): boolean => {
+  //   const requestCount = parseInt(
+  //     localStorage.getItem("requestCount") || "0",
+  //     10
+  //   );
+  //   const lastRequestTimestamp = parseInt(
+  //     localStorage.getItem("lastRequestTimestamp") || "0",
+  //     10
+  //   );
+  //   const currentTime = new Date().getTime();
 
-    // Check if the request count exceeds the limit
-    if (
-      requestCount >= 3 &&
-      currentTime - lastRequestTimestamp < 15 * 60 * 1000
-    ) {
-      return true; // Rate limit exceeded
-    }
+  //   // Check if the request count exceeds the limit
+  //   if (
+  //     requestCount >= 3 &&
+  //     currentTime - lastRequestTimestamp < 15 * 60 * 1000
+  //   ) {
+  //     return true; // Rate limit exceeded
+  //   }
 
-    return false; // Rate limit not exceeded
-  };
+  //   return false; // Rate limit not exceeded
+  // };
 
-  // Helper function to increment the request count
-  const incrementRequestCount = (): void => {
-    const requestCount =
-      parseInt(localStorage.getItem("requestCount") || "0", 10) + 1;
-    localStorage.setItem("requestCount", requestCount.toString());
-    localStorage.setItem(
-      "lastRequestTimestamp",
-      new Date().getTime().toString()
-    );
-  };
+  // // Helper function to increment the request count
+  // const incrementRequestCount = (): void => {
+  //   const requestCount =
+  //     parseInt(localStorage.getItem("requestCount") || "0", 10) + 1;
+  //   localStorage.setItem("requestCount", requestCount.toString());
+  //   localStorage.setItem(
+  //     "lastRequestTimestamp",
+  //     new Date().getTime().toString()
+  //   );
+  // };
 
   // const handleFormSubmit = async (e) => {
   //   e.preventDefault();
