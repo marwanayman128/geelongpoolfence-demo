@@ -94,33 +94,33 @@ export default function ContactSection() {
       setIsSubmitting(false);
     }
   };
-  const checkRateLimit = (): boolean => {
-    const requestCount = parseInt(
-      localStorage.getItem("requestCount") || "0",
-      10
-    );
-    const lastRequestTimestamp = parseInt(
-      localStorage.getItem("lastRequestTimestamp") || "0",
-      10
-    );
-    const currentTime = new Date().getTime();
-    if (
-      requestCount >= 3 &&
-      currentTime - lastRequestTimestamp < 15 * 60 * 1000
-    ) {
-      return true; // Rate limit exceeded
-    }
-    return false; // Rate limit not exceeded
-  };
-  const incrementRequestCount = (): void => {
-    const requestCount =
-      parseInt(localStorage.getItem("requestCount") || "0", 10) + 1;
-    localStorage.setItem("requestCount", requestCount.toString());
-    localStorage.setItem(
-      "lastRequestTimestamp",
-      new Date().getTime().toString()
-    );
-  };
+  // const checkRateLimit = (): boolean => {
+  //   const requestCount = parseInt(
+  //     localStorage.getItem("requestCount") || "0",
+  //     10
+  //   );
+  //   const lastRequestTimestamp = parseInt(
+  //     localStorage.getItem("lastRequestTimestamp") || "0",
+  //     10
+  //   );
+  //   const currentTime = new Date().getTime();
+  //   if (
+  //     requestCount >= 3 &&
+  //     currentTime - lastRequestTimestamp < 15 * 60 * 1000
+  //   ) {
+  //     return true; // Rate limit exceeded
+  //   }
+  //   return false; // Rate limit not exceeded
+  // };
+  // const incrementRequestCount = (): void => {
+  //   const requestCount =
+  //     parseInt(localStorage.getItem("requestCount") || "0", 10) + 1;
+  //   localStorage.setItem("requestCount", requestCount.toString());
+  //   localStorage.setItem(
+  //     "lastRequestTimestamp",
+  //     new Date().getTime().toString()
+  //   );
+  // };
   return (
     <div className="bg-gradient-to-r from-cyan-500 to-blue-500 flex justify-between items-center max-[650px]:flex-col  ">
       <div className="isolate bg-white px-6 py-32 max-[650px]:pt-6 max-[650px]:pb-12 lg:px-8 relative w-full justify-center max-[650px]:w-full ">
